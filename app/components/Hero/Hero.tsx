@@ -1,77 +1,14 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import React, { useRef, useState } from "react";
 import { heroData } from "./HeroContent";
+import { useHeroAnimation } from "./GSAP";
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [randomImage, setRandomImage] = useState("");
 
-  useEffect(() => {
-    const images = heroData.randomImages;
-    const selected = images[Math.floor(Math.random() * images.length)];
-    setRandomImage(selected);
-  }, []);
-
-  useGSAP(() => {
-    if (!containerRef.current) return;
-
-    const words = containerRef.current.querySelectorAll(".js-word span");
-    const imageWrapper = containerRef.current.querySelector(".js-image-wrapper");
-
-    const tl = gsap.timeline({ delay: 0.3 });
-
-    tl.fromTo(
-      words,
-      { y: "100%" },
-      {
-        y: "0%",
-        duration: 1,
-        ease: "power4.out",
-        stagger: 0.05,
-      }
-    );
-
-    tl.fromTo(
-      imageWrapper,
-      { scale: 0, opacity: 0 },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.8,
-        ease: "back.out(1.7)",
-      },
-      "-=0.5"
-    );
-
-    // Subtle parallax on the background image
-    gsap.to(".js-hero-bg", {
-      y: 50,
-      ease: "none",
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
-  }, { scope: containerRef });
-
-  const renderText = (text: string) => {
-    return text.split(" ").map((word, i) => (
-      <div key={i} className="inline mr-2 | pointer-fine:mr-0 | js-word" style={{ marginRight: "10px" }}>
-        <div style={{ position: "relative", display: "inline-block", overflow: "hidden" }}>
-          {word.split("").map((char, j) => (
-            <span key={j} className="inline-flex flex-col relative h-full">
-              <span className="block relative w-full h-full">{char}</span>
-            </span>
-          ))}
-        </div>
-      </div>
-    ));
-  };
+  const { renderText } = useHeroAnimation(containerRef, setRandomImage);
 
   return (
     <section ref={containerRef} className="w-full py-0">
