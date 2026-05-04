@@ -42,15 +42,14 @@ export const useHeroAnimation = (
 
       tl.fromTo(
         imageWrapper,
-        { width: 0, scale: 0, opacity: 0 },
+        { width: 0, opacity: 0 },
         {
           width: "1.1em",
-          scale: 1,
           opacity: 1,
-          duration: 0.6,
-          ease: "back.out(2)",
+          duration: 1,
+          ease: "expo.out",
         },
-        "-=0.4",
+        "-=0.6",
       );
 
       // Subtle parallax on the background image

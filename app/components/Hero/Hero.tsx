@@ -120,13 +120,14 @@ const Hero: React.FC = () => {
                             marginTop: "0.05em",
                           }}
                         >
-                          <div className="w-full h-full relative">
+                          <div className="h-full relative" style={{ width: "1.1em" }}>
                             {randomImage && (
                               <Image
                                 fill
                                 src={randomImage}
                                 className="w-full h-full object-cover absolute inset-0"
                                 alt="Random Hero"
+                                priority
                               />
                             )}
                           </div>
