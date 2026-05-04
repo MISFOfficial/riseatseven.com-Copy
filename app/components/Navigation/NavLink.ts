@@ -19,7 +19,7 @@ export const navLinks: NavLink[] = [
     id: "services",
     href: "/services",
     hasPlus: true,
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800",
+    image: "/rise_files/0B5A7827.jpg",
     items: [
       "Search & Growth Strategy",
       "Onsite SEO",
@@ -36,7 +36,7 @@ export const navLinks: NavLink[] = [
     id: "international",
     href: "/international",
     hasPlus: true,
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800",
+    image: "/rise_files/0B5A7487.jpg",
     items: [
       "US Digital PR",
       "Spain Digital PR",
@@ -49,7 +49,7 @@ export const navLinks: NavLink[] = [
     id: "about",
     href: "/about",
     hasPlus: true,
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800",
+    image: "/rise_files/0B5A6875.jpg",
     items: ["About Us", "Meet The Risers", "Culture", "Testimonials"],
   },
   { label: "Work", id: "work", href: "/work", badge: "25" },

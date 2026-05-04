@@ -9,14 +9,14 @@ const insightsData = [
     title: "Ryan McNamara Is Now Rise at Seven's Global Operations Director",
     category: "News",
     readTime: "2 mins",
-    image: "https://rise-atseven.transforms.svdcdn.com/production/images/3-copy.jpg?w=800&q=80",
+    image: "/rise_files/3-copy.jpg",
   },
   {
     id: 2,
     title: "Rise at Seven Appointed by Coneys to Drive Demand and Retail Growth",
     category: "Food/Hospitality",
     readTime: "2 mins",
-    image: "https://rise-atseven.transforms.svdcdn.com/production/images/Noomz1-4.jpg?w=800&q=80",
+    image: "/rise_files/Noomz1-4.jpg",
   },
 ];
 

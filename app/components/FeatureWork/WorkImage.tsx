@@ -106,7 +106,7 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
 
         <div className="w-full flex items-end justify-between">
           <div className="w-8 | lg:w-24">
-            {/* Logo placeholder */}
+            <img src={work.image} className="w-full h-full object-contain grayscale invert brightness-0" alt="Client Logo" />
           </div>
 
           <div className="shrink-0 inline-flex items-center rounded-full tracking-tight font-medium leading-none text-current bg-white/15 backdrop-blur-sm text-sm gap-x-3 py-2.5 px-3.5 | lg:text-base">

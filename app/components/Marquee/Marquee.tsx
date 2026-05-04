@@ -39,8 +39,8 @@ const Marquee: React.FC = () => {
   }, { scope: containerRef });
 
   const marqueeItems = [
-    { text: "Chasing Consumers", image: "https://rise-atseven.transforms.svdcdn.com/production/images/Screenshot-2025-06-25-at-14.49.00.png?w=400&h=400&q=80" },
-    { text: "Not Algorithms", image: "https://rise-atseven.transforms.svdcdn.com/production/images/IMG_5023.jpg?w=400&h=400&q=80" },
+    { text: "Chasing Consumers", image: "/rise_files/Screenshot-2025-06-25-at-14.49.00.png" },
+    { text: "Not Algorithms", image: "/rise_files/IMG_5023.jpg" },
   ];
 
   // Repeat items to fill space for the loop

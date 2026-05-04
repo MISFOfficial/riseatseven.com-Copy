@@ -9,10 +9,12 @@ import Intro from "./components/Intro/Intro";
 import Services from "./components/Services/Services";
 import Marquee from "./components/Marquee/Marquee";
 import Legacy from "./components/Legacy/Legacy";
+import Insights from "./components/Insights/Insights";
+import PreFooter from "./components/PreFooter/PreFooter";
 
 function page() {
   return (
-    <div className="flex flex-col min-h-screen bg-grey-100">
+    <div className="flex flex-col min-h-screen bg-grey-100 selection:bg-mint selection:text-grey-900">
       <TopAd />
       <header className="sticky top-0 z-50">
         <Navigation />
@@ -26,6 +28,8 @@ function page() {
         <Services />
         <Marquee />
         <Legacy />
+        <Insights />
+        <PreFooter />
       </main>
 
       <Footer />
