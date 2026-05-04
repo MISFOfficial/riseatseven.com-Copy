@@ -6,6 +6,7 @@ import Image from "next/image";
 import Heading from "./Heading";
 import LeftBNP from "./_Components/LeftBNP";
 import RightBNP from "./_Components/RightBNP";
+import Partner from "./_Components/Partner";
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -16,15 +17,15 @@ const Hero: React.FC = () => {
       <div className="w-full px-0">
         <div className="w-full h-screen-fix h-svh relative ">
           {/* Bottom Text Overlays */}
-          <div className="items-end justify-between absolute bottom-0 left-0 z-30 w-full  flex">
-            <div className="hidden shrink-0 | md:inline max-w-sm">
+          <div className="p-7 items-end justify-between absolute bottom-0 left-0 z-30 w-full  flex">
+            <div className="hidden shrink-0 | md:inline max-w-[400px]">
               <div className="w-full text-center | md:text-left">
                 <p className="text-sm font-sans-primary leading-normal text-pretty text-white mb-0!">
                   {heroData.bottomText.left}
                 </p>
               </div>
             </div>
-            <div className="w-full text-center | md:text-right max-w-xs">
+            <div className="w-full text-center | md:text-right max-w-[180px]">
               <p className="text-sm font-sans-primary leading-normal text-pretty text-white mb-0!">
                 <strong className="font-medium">
                   {heroData.bottomText.right}
@@ -34,7 +35,7 @@ const Hero: React.FC = () => {
           </div>
 
           <div className="w-full h-full relative overflow-hidden rounded-3xl">
-            <div className="w-full h-full overflow-hidden grid bg-grey-900 rounded-3xl scale-105">
+            <div className="w-full h-full overflow-hidden grid bg-grey-800 rounded-3xl scale-105">
               {/* Background Image Layer */}
               <div className="col-start-1 row-start-1 relative z-0 overflow-hidden blur-sm | lg:blur-md js-hero-bg">
                 {randomImage && (
@@ -48,7 +49,7 @@ const Hero: React.FC = () => {
               </div>
 
               {/* Main Content Layer */}
-              <div className="col-start-1 row-start-1 z-20 relative flex justify-center items-center bg-grey-900/30">
+              <div className="col-start-1 row-start-1 z-20 relative flex justify-center items-center ">
                 <div className="flex flex-col items-center">
                   {/* Badges/Awards */}
                   <div className="flex flex-col items-center justify-center mb-5">
@@ -81,6 +82,10 @@ const Hero: React.FC = () => {
 
                   <div className="inline-flex flex-wrap text-balance relative text-left justify-start text-white text-lg/tight | md:text-xl/tight | xl:text-2xl/none | 4xl:text-4xl/none font-sans-primary font-medium tracking-tight mt-2 | lg:mt-4">
                     on every searchable platform
+                  </div>
+
+                  <div className="hidden xl:block mt-8">
+                    <Partner />
                   </div>
                 </div>
               </div>

@@ -31,7 +31,6 @@ function page() {
         <Insights />
         <PreFooter />
       </main>
-
       <Footer />
     </div>
   );
