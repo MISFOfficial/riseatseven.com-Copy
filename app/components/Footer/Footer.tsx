@@ -10,14 +10,7 @@ export default function Footer() {
   return (
     <section className="w-full py-0" id="footer">
       <div className="w-full px-0">
-        <div className="p-2 grid relative mt-8 lg:mt-0 js-footer">
-          <div
-            className="absolute top-0 left-0 w-full p-2 flex js-footer-background"
-            style={{ height: "100%" }}
-          >
-            <div className="w-full h-full bg-grey-900 rounded-3xl"></div>
-          </div>
-
+        <div className="p-2 grid bg-grey-900 rounded-3xl relative mt-8 lg:mt-0 js-footer">
           <div
             className="col-start-1 row-start-1 grid grid-cols-12 pt-14 pb-6 relative z-20 lg:py-10 px-4 md:px-7 gap-x-3 md:gap-x-5 gap-y-3 md:gap-y-7 js-footer-content"
             style={{ opacity: 1 }}
