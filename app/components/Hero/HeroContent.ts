@@ -37,6 +37,7 @@ export const heroData: HeroData = {
       "/rise_files/global-search-awards.png",
       "/rise_files/Mask-group.png",
       "/rise_files/UKSocial-Media-Awards-White.png",
+      "/rise_files/UK-Content-Awards-White.png",
     ],
   },
 };

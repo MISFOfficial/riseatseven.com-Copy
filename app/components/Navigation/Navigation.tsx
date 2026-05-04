@@ -6,11 +6,14 @@ import MobileMenu from "./MobileMenu";
 import { navLinks } from "./NavLink";
 import MegaMenuLink from "./MegaMenuLink";
 import Logo from "./Logo";
+import Link from "next/link";
+import CommontButton from "./CommontButton";
 
 function Navigation() {
   const [mobileMenu, setMobileMenu] = useState(false);
   const [megaMenu, setMegaMenu] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const [hideAnnouncementBar, setHideAnnouncementBar] = useState(false);
 
   const [hoverStyles, setHoverStyles] = useState({
@@ -34,6 +37,13 @@ function Navigation() {
 
       // Scroll state
       setIsScrolled(currentScrollY > 50);
+
+      // Hide/Show on scroll direction
+      if (currentScrollY > 100 && currentScrollY > prevScrollY.current) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
 
       prevScrollY.current = currentScrollY;
     };
@@ -89,7 +99,9 @@ function Navigation() {
   return (
     <>
       <nav
-        className={`w-full fixed top-0 left-0 z-50 flex items-center justify-center transition-all duration-700 ${isScrolled ? "p-3" : "px-6 py-17"}`}
+        className={`w-full fixed top-0 left-0 z-50 flex items-center justify-center transition-all duration-500 ${
+          isScrolled ? "p-3" : "px-6 py-17"
+        } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
       >
         <div
           className={`w-full max-w-8xl flex items-center justify-between transition-all duration-500 ${isScrolled ? "bg-white/80 backdrop-blur-xl px-4 lg:px-3 py-1.5 rounded-full shadow-sm" : ""}`}
@@ -97,7 +109,7 @@ function Navigation() {
           {/* Logo */}
           <Logo isScrolled={isScrolled} />
           {/* Desktop Links */}
-          <div 
+          <div
             ref={linksContainerRef}
             className="relative  hidden lg:inline-flex items-center"
             onMouseLeave={handleMouseLeave}
@@ -131,21 +143,12 @@ function Navigation() {
 
           {/* CTA Button */}
           <div className="hidden lg:inline-flex">
-            <a
-              href="/connect-with-us"
-              className={`w-full group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tightish capitalize font-sans font-medium overflow-hidden border border-transparent cursor-pointer focus:outline-none md:w-auto text-base px-6 py-3 rounded-full transition-all duration-300 bg-grey-900 text-white hover:bg-black`}
-            >
-              <div className="relative overflow-hidden h-6">
-                <div className="transition group-hover:-translate-y-6 flex items-center gap-x-2">
-                  <span>Get in touch</span>
-                  <span className="inline-block text-xs mt-1">↗</span>
-                </div>
-                <div className="transition absolute top-0 left-0 translate-y-6 group-hover:translate-y-0 flex items-center gap-x-2">
-                  <span>Get in touch</span>
-                  <span className="inline-block text-xs mt-1">↗</span>
-                </div>
-              </div>
-            </a>
+            <CommontButton 
+              href="/connect-with-us" 
+              label="Get in touch" 
+              isScrolled={isScrolled} 
+              variant="secondary"
+            />
           </div>
 
           {/* Mobile Menu Button */}
@@ -210,16 +213,12 @@ function Navigation() {
                       />
                     )}
                     <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-40" />
-                    <div className="absolute bottom-6 left-6 right-6">
-                      <a
-                        href={activeLink.href}
-                        className="w-full inline-flex items-center justify-between px-6 py-4 bg-grey-900 text-white rounded-full text-lg font-medium transition-all hover:bg-mint hover:text-grey-900 group/btn"
-                      >
-                        <span>View All {activeLink.label}</span>
-                        <span className="transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1">
-                          ↗
-                        </span>
-                      </a>
+                    <div className="absolute bottom-6 left-6 right-6 flex justify-center">
+                      <CommontButton 
+                        href="/connect-with-us" 
+                        label="Get in touch" 
+                        variant="white"
+                      />
                     </div>
                   </div>
                 </div>
