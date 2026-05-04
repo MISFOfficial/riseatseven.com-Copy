@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MobileMenu from "./MobileMenu";
 import { navLinks } from "./NavLink";
+import MegaMenuLink from "./MegaMenuLink";
 
 function Navigation() {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -254,13 +255,7 @@ function Navigation() {
                     </h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
                       {activeLink.items?.map((sub) => (
-                        <a
-                          key={sub}
-                          href="#"
-                          className="text-2xl font-medium text-grey-900 hover:text-mint transition-colors tracking-tight leading-tight"
-                        >
-                          {sub}
-                        </a>
+                        <MegaMenuLink key={sub} label={sub} href="#" />
                       ))}
                     </div>
                   </div>
@@ -281,7 +276,9 @@ function Navigation() {
                         className="w-full inline-flex items-center justify-between px-6 py-4 bg-grey-900 text-white rounded-full text-lg font-medium transition-all hover:bg-mint hover:text-grey-900 group/btn"
                       >
                         <span>View All {activeLink.label}</span>
-                        <span className="transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1">↗</span>
+                        <span className="transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1">
+                          ↗
+                        </span>
                       </a>
                     </div>
                   </div>
