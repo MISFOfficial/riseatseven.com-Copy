@@ -6,7 +6,7 @@ function Logo({ isScrolled }: any) {
       href="/"
       className={`flex w-32 ml-2 md:w-40 transition-colors duration-300 ${isScrolled ? "text-grey-900" : "text-white"}`}
     >
-      <div className="aspect-4/3 text-current w-full">
+      <div className="aspect-[168/21] text-current w-full">
         <svg
           className="w-full h-full object-contain fill-current"
           xmlns="http://www.w3.org/2000/svg"

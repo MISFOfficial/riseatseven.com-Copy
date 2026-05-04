@@ -16,7 +16,7 @@ function page() {
   return (
     <div className="flex flex-col min-h-screen bg-grey-100 selection:bg-mint selection:text-grey-900 p-[8px]">
       <TopAd />
-      <header className="sticky top-50 z-50">
+      <header className="sticky top-0 z-50">
         <Navigation />
       </header>
 

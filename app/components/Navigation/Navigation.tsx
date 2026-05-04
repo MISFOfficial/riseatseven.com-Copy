@@ -89,14 +89,10 @@ function Navigation() {
   return (
     <>
       <nav
-        className={`w-full fixed top-0 left-0 z-50 flex items-center justify-center transition-all duration-700 p-6`}
+        className={`w-full fixed top-0 left-0 z-50 flex items-center justify-center transition-all duration-700 ${isScrolled ? "p-3" : "px-6 py-8"}`}
       >
         <div
-          className={`w-full  flex items-center justify-between transition-all duration-500 ${
-            isScrolled
-              ? "px-6 py-3 rounded-full bg-white/80 backdrop-blur-xl  shadow-sm"
-              : "px-0 py-0 rounded-none bg-transparent border-none shadow-none"
-          }`}
+          className={`w-full max-w-8xl flex items-center justify-between transition-all duration-500 ${isScrolled ? "bg-white/80 backdrop-blur-xl px-6 py-0 rounded-full border border-white/20 shadow-lg" : ""}`}
         >
           {/* Logo */}
           <Logo isScrolled={isScrolled} />
@@ -106,24 +102,12 @@ function Navigation() {
             className="relative  hidden lg:inline-flex items-center"
             onMouseLeave={handleMouseLeave}
           >
-            {/* Hover Pill Background */}
-            <motion.div
-              initial={false}
-              animate={{
-                opacity: hoverStyles.opacity,
-                left: hoverStyles.left,
-                width: hoverStyles.width,
-              }}
-              transition={{ type: "spring", stiffness: 350, damping: 30 }}
-              className="bg-grey-50 z-0 h-8 rounded-full absolute pointer-events-none"
-            />
-
             {navLinks.map((item) => (
               <div key={item.id} className="z-10 relative">
                 <a
                   href={item.href}
                   onMouseEnter={(e) => handleMouseEnter(e, item.id)}
-                  className={`group inline-flex tracking-tight leading-tight  font-medium relative duration-300 px-4 transition-colors ${
+                  className={`group inline-flex tracking-tight leading-tight  font-semibold relative duration-300 px-4 transition-colors ${
                     isScrolled
                       ? "text-grey-900 hover:text-black"
                       : "text-white hover:text-grey-300"
