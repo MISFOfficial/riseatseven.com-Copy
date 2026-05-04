@@ -3,7 +3,10 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { heroData } from "./HeroContent";
+
+gsap.registerPlugin(ScrollTrigger);
 import React from "react";
 
 export const useHeroAnimation = (
@@ -50,7 +53,7 @@ export const useHeroAnimation = (
       );
 
       // Subtle parallax on the background image
-      gsap.to(". ", {
+      gsap.to(".js-hero-bg", {
         y: 50,
         ease: "none",
         scrollTrigger: {

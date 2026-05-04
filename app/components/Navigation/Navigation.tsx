@@ -89,12 +89,10 @@ function Navigation() {
   return (
     <>
       <nav
-        className={`w-full fixed top-0 left-0 z-50 flex items-center justify-center transition-all duration-700 ${
-          isScrolled ? "p-3" : "py-6 px-6 lg:px-12"
-        }`}
+        className={`w-full fixed top-0 left-0 z-50 flex items-center justify-center transition-all duration-700 p-6`}
       >
         <div
-          className={`w-full max-w-9xl flex items-center justify-between transition-all duration-500 ${
+          className={`w-full  flex items-center justify-between transition-all duration-500 ${
             isScrolled
               ? "px-6 py-3 rounded-full bg-white/80 backdrop-blur-xl  shadow-sm"
               : "px-0 py-0 rounded-none bg-transparent border-none shadow-none"
@@ -125,7 +123,7 @@ function Navigation() {
                 <a
                   href={item.href}
                   onMouseEnter={(e) => handleMouseEnter(e, item.id)}
-                  className={`group inline-flex tracking-tight leading-tight py-1 font-medium relative duration-300 px-4 transition-colors ${
+                  className={`group inline-flex tracking-tight leading-tight  font-medium relative duration-300 px-4 transition-colors ${
                     isScrolled
                       ? "text-grey-900 hover:text-black"
                       : "text-white hover:text-grey-300"

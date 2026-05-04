@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
   const { renderText } = useHeroAnimation(containerRef, setRandomImage);
 
   return (
-    <section ref={containerRef} className="w-full py-0">
+    <section ref={containerRef} className="w-full pt-2">
       <div className="w-full px-0">
         <div className="w-full h-screen-fix h-svh relative ">
           {/* Bottom Text Overlays */}
@@ -36,7 +36,7 @@ const Hero: React.FC = () => {
           <div className="w-full h-full relative overflow-hidden rounded-3xl">
             <div className="w-full h-full overflow-hidden grid bg-grey-900 rounded-3xl scale-105">
               {/* Background Image Layer */}
-              <div className="col-start-1 row-start-1 relative z-0 overflow-hidden blur-sm | lg:blur-md  ">
+              <div className="col-start-1 row-start-1 relative z-0 overflow-hidden blur-sm | lg:blur-md js-hero-bg">
                 {randomImage && (
                   <Image
                     fill
