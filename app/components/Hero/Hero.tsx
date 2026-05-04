@@ -111,7 +111,7 @@ const Hero: React.FC = () => {
                         {renderText(heroData.heading.line2.split(" ")[0])}
 
                         <div
-                          className=" shrink-0 flex bg-black/10 relative overflow-hidden  mr-2 | pointer-fine:mr-0 "
+                          className="shrink-0 flex bg-black/10 relative overflow-hidden mr-2 | pointer-fine:mr-0 js-image-wrapper"
                           style={{
                             marginRight: "10px",
                             borderRadius: "15%",
