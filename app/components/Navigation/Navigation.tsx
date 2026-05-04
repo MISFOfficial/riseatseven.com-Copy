@@ -89,15 +89,15 @@ function Navigation() {
   return (
     <>
       <nav
-        className={`w-full fixed top-0 left-0 z-50 flex items-center justify-center transition-all duration-700 ${isScrolled ? "p-3" : "px-6 py-8"}`}
+        className={`w-full fixed top-0 left-0 z-50 flex items-center justify-center transition-all duration-700 ${isScrolled ? "p-3" : "px-6 py-17"}`}
       >
         <div
-          className={`w-full max-w-8xl flex items-center justify-between transition-all duration-500 ${isScrolled ? "bg-white/80 backdrop-blur-xl px-6 py-0 rounded-full border border-white/20 shadow-lg" : ""}`}
+          className={`w-full max-w-8xl flex items-center justify-between transition-all duration-500 ${isScrolled ? "bg-white/80 backdrop-blur-xl px-4 lg:px-3 py-1.5 rounded-full shadow-sm" : ""}`}
         >
           {/* Logo */}
           <Logo isScrolled={isScrolled} />
           {/* Desktop Links */}
-          <div
+          <div 
             ref={linksContainerRef}
             className="relative  hidden lg:inline-flex items-center"
             onMouseLeave={handleMouseLeave}
