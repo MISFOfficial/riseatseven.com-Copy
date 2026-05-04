@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { navLinks } from "./NavLink";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -82,50 +83,11 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
 
               {/* Links */}
               <div className="flex flex-col items-start gap-y-1">
-                {[
-                  {
-                    label: "Services",
-                    id: "services",
-                    items: [
-                      "Search & Growth Strategy",
-                      "Onsite SEO",
-                      "Content Experience",
-                      "B2B Marketing",
-                      "Digital PR",
-                      "Social Media & Campaigns",
-                      "Data & Insights",
-                      "Social SEO/Search",
-                    ],
-                  },
-                  {
-                    label: "International",
-                    id: "international",
-                    items: [
-                      "US Digital PR",
-                      "Spain Digital PR",
-                      "Germany Digital PR",
-                      "Netherlands Digital PR",
-                    ],
-                  },
-                  {
-                    label: "About",
-                    id: "about",
-                    items: [
-                      "About Us",
-                      "Meet The Risers",
-                      "Culture",
-                      "Testimonials",
-                    ],
-                  },
-                  { label: "Work", id: "work" },
-                  { label: "Careers", id: "careers" },
-                  { label: "Blog", id: "blog" },
-                  { label: "Webinar", id: "webinar" },
-                ].map((menu) => (
+                {navLinks.map((menu) => (
                   <div key={menu.id} className="w-full">
                     <div className="flex items-center justify-between">
                       <a
-                        href={`/${menu.id}`}
+                        href={menu.href}
                         className="text-white text-4xl tracking-tight font-medium leading-none md:text-5xl hover:text-mint transition-colors"
                       >
                         {menu.label}

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MobileMenu from "./MobileMenu";
+import { navLinks } from "./NavLink";
 
 function Navigation() {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -158,32 +159,24 @@ function Navigation() {
               className="bg-grey-50 z-0 h-8 rounded-full absolute pointer-events-none"
             />
 
-            {[
-              "Services",
-              "International",
-              "About",
-              "Work",
-              "Careers",
-              "Blog",
-              "Webinars",
-            ].map((item) => (
-              <div key={item} className="z-10 relative">
+            {navLinks.map((item) => (
+              <div key={item.id} className="z-10 relative">
                 <a
-                  href={`/${item.toLowerCase()}`}
-                  onMouseEnter={(e) => handleMouseEnter(e, item)}
+                  href={item.href}
+                  onMouseEnter={(e) => handleMouseEnter(e, item.id)}
                   className={`group inline-flex tracking-tight leading-tight py-1 font-medium relative duration-300 px-4 hover:text-grey-900 ${
                     hideHeaderBackground ? "text-white" : "text-grey-900"
                   }`}
                 >
-                  {item}
-                  {["Services", "International", "About"].includes(item) && (
+                  {item.label}
+                  {item.hasPlus && (
                     <span className="hidden ml-1 pointer-events-none lg:inline">
                       +
                     </span>
                   )}
-                  {item === "Work" && (
+                  {item.badge && (
                     <div className="inline-flex pointer-events-none absolute top-0 right-0 -translate-y-2.5 rounded-full px-1.5 py-0.5 text-[10px] font-thin transition group-hover:-translate-y-4 bg-mint text-grey-900">
-                      25
+                      {item.badge}
                     </div>
                   )}
                 </a>
