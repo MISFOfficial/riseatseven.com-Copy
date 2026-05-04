@@ -3,21 +3,32 @@ import Navigation from "./components/Navigation/Navigation";
 import TopAd from "./components/TopAd/TopAd";
 import Footer from "./components/Footer/Footer";
 import FeatureWork from "./components/FeatureWork/FeatureWork";
+import Hero from "./components/Hero/Hero";
+import LogoSlider from "./components/LogoSlider/LogoSlider";
+import Intro from "./components/Intro/Intro";
+import Services from "./components/Services/Services";
+import Marquee from "./components/Marquee/Marquee";
+import Legacy from "./components/Legacy/Legacy";
 
 function page() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-grey-100">
       <TopAd />
-      <header className="sticky top-0 z-50 py-4 px-4 md:px-7">
+      <header className="sticky top-0 z-50">
         <Navigation />
       </header>
-      <main className="grow  px-4 md:px-7">
-        {/* Other sections will go here */}
+      
+      <main className="grow">
+        <Hero />
+        <LogoSlider />
+        <Intro />
         <FeatureWork />
+        <Services />
+        <Marquee />
+        <Legacy />
       </main>
-      <div className="px-4 md:px-7 pb-4">
-        <Footer />
-      </div>
+
+      <Footer />
     </div>
   );
 }
