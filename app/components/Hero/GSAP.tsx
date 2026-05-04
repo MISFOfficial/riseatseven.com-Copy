@@ -31,12 +31,12 @@ export const useHeroAnimation = (
 
       tl.fromTo(
         words,
-        { y: "100%" },
+        { y: "110%" },
         {
           y: "0%",
-          duration: 1,
-          ease: "power4.out",
-          stagger: 0.05,
+          duration: 0.4,
+          ease: "power3.out",
+          stagger: 0.02,
         },
       );
 
@@ -47,10 +47,10 @@ export const useHeroAnimation = (
           width: "1.1em",
           scale: 1,
           opacity: 1,
-          duration: 1,
-          ease: "back.out(1.7)",
+          duration: 0.6,
+          ease: "back.out(2)",
         },
-        "-=0.6",
+        "-=0.4",
       );
 
       // Subtle parallax on the background image
