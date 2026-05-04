@@ -234,48 +234,60 @@ function Navigation() {
       <AnimatePresence>
         {megaMenu && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             onMouseLeave={clearInteractions}
-            className="fixed top-[64px] lg:top-[72px] left-0 w-full z-40 bg-white border-t border-grey-100 shadow-xl"
+            className="fixed top-[70px] left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-40 bg-white rounded-[32px] shadow-2xl overflow-hidden p-8 lg:p-10"
           >
-            <div className="max-w-7xl mx-auto px-6 py-12">
-              <div className="grid grid-cols-4 gap-8">
-                <div className="col-span-1">
-                  <h3 className="text-xs font-bold text-grey-400 uppercase tracking-widest mb-4">
-                    {megaMenu}
-                  </h3>
-                  <ul className="space-y-3">
-                    <li>
+            {(() => {
+              const activeLink = navLinks.find((l) => l.id === megaMenu);
+              if (!activeLink) return null;
+
+              return (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                  {/* Left Side: Links */}
+                  <div className="lg:col-span-7">
+                    <h3 className="text-xs font-bold text-grey-400 uppercase tracking-widest mb-8">
+                      Core {activeLink.label}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                      {activeLink.items?.map((sub) => (
+                        <a
+                          key={sub}
+                          href="#"
+                          className="text-2xl font-medium text-grey-900 hover:text-mint transition-colors tracking-tight leading-tight"
+                        >
+                          {sub}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Right Side: Image Card */}
+                  <div className="lg:col-span-5 relative group cursor-pointer overflow-hidden rounded-2xl aspect-[4/3]">
+                    {activeLink.image && (
+                      <img
+                        src={activeLink.image}
+                        alt={activeLink.label}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-40" />
+                    <div className="absolute bottom-6 left-6 right-6">
                       <a
-                        href="#"
-                        className="text-xl font-medium text-grey-900 hover:text-navy transition-colors"
+                        href={activeLink.href}
+                        className="w-full inline-flex items-center justify-between px-6 py-4 bg-grey-900 text-white rounded-full text-lg font-medium transition-all hover:bg-mint hover:text-grey-900 group/btn"
                       >
-                        All {megaMenu}
+                        <span>View All {activeLink.label}</span>
+                        <span className="transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1">↗</span>
                       </a>
-                    </li>
-                    <li>
-                      <a
-                        href="#"
-                        className="text-xl font-medium text-grey-900 hover:text-navy transition-colors"
-                      >
-                        Latest Work
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="col-span-3">
-                  <div className="aspect-21/9 bg-grey-50 rounded-2xl flex items-center justify-center text-grey-300 overflow-hidden relative">
-                    <span className="text-sm font-medium z-10">
-                      Premium Content Placeholder
-                    </span>
-                    <div className="absolute inset-0 bg-linear-to-br from-mint/10 to-navy/10" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              );
+            })()}
           </motion.div>
         )}
       </AnimatePresence>
