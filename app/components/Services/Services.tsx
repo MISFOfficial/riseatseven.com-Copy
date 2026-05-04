@@ -13,10 +13,10 @@ const Services: React.FC = () => {
           <div className="col-span-12">
             <div className="grid grid-cols-12 md:border-b md:border-grey-200 md:pb-5 gap-y-3 | md:gap-y-7 gap-x-3 | md:gap-x-5 items-center">
               <div className="col-span-11 md:col-span-9 flex items-center">
-                <h2 className="inline-flex flex-wrap text-balance relative pointer-fine:pr-1 pointer-fine:pb-2 flex flex-row items-center text-left justify-start text-grey-900 text-6xl/0.9 | md:text-7xl/none | lg:text-7xl/none | 2xl:text-8xl/0.9 | 4xl:text-8.5xl/0.9 font-sans-primary font-medium tracking-tight">
+                <h2 className="flex flex-wrap text-balance relative pointer-fine:pr-1 pointer-fine:pb-2  flex-row items-center text-left justify-start text-grey-900 text-6xl/0.9 | md:text-7xl/none | lg:text-7xl/none | 2xl:text-8xl/0.9 | 4xl:text-8.5xl/0.9 font-sans-primary font-medium tracking-tight">
                   <span className="mr-4">Our</span>
                   <div
-                    className="inline shrink-0 flex bg-black/5 relative overflow-hidden mr-4"
+                    className=" shrink-0 flex bg-black/5 relative overflow-hidden mr-4"
                     style={{
                       borderRadius: "15%",
                       width: "75px",
