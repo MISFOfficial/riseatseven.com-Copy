@@ -2,6 +2,7 @@
 import React from "react";
 import { footerContent } from "./Content";
 import Logo from "./Logo";
+import FooterLink from "./FooterLink";
 
 export default function Footer() {
   const { newsletter, socials, columns, bottom } = footerContent;
@@ -72,20 +73,7 @@ export default function Footer() {
                   className="flex flex-col items-start gap-y-1.5 border-l border-white/20 pl-3 w-1/2 md:w-auto"
                 >
                   {col.links.map((link, j) => (
-                    <a
-                      key={j}
-                      href={link.href}
-                      className="group inline-flex text-white font-medium tracking-tight leading-tight text-lg lg:text-xl hover:text-mint"
-                    >
-                      <div className="relative overflow-hidden h-7">
-                        <div className="transition group-hover:-translate-y-7">
-                          {link.label}
-                        </div>
-                        <div className="transition absolute top-0 left-0 translate-y-7 group-hover:translate-y-0">
-                          {link.label}
-                        </div>
-                      </div>
-                    </a>
+                    <FooterLink key={j} label={link.label} href={link.href} />
                   ))}
                 </div>
               ))}
