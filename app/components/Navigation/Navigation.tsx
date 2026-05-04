@@ -118,7 +118,7 @@ function Navigation() {
               hideHeaderBackground ? "text-white" : "text-grey-900"
             }`}
           >
-            <div className="aspect-[4/3] text-current w-full">
+            <div className="aspect-4/3 text-current w-full">
               <svg
                 className="w-full h-full object-contain fill-current"
                 xmlns="http://www.w3.org/2000/svg"
@@ -261,7 +261,7 @@ function Navigation() {
                   </div>
 
                   {/* Right Side: Image Card */}
-                  <div className="lg:col-span-5 relative group cursor-pointer overflow-hidden rounded-2xl aspect-[4/3]">
+                  <div className="lg:col-span-5 relative group cursor-pointer overflow-hidden rounded-2xl aspect-4/3">
                     {activeLink.image && (
                       <img
                         src={activeLink.image}

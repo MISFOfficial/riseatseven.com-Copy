@@ -10,7 +10,7 @@ function page() {
       <header className="sticky top-0 z-50 py-4 px-4 md:px-7">
         <Navigation />
       </header>
-      <main className="flex-grow">
+      <main className="grow">
         {/* Other sections will go here */}
       </main>
       <div className="px-4 md:px-7 pb-4">
