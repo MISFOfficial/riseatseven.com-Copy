@@ -78,7 +78,6 @@ export const useHeroAnimation = (
           style={{
             position: "relative",
             display: "inline-block",
-            overflow: "hidden",
           }}
         >
           {word.split("").map((char, j) => (

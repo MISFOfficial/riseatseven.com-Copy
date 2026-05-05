@@ -18,7 +18,7 @@ function Heading({ containerRef, setRandomImage, randomImage }: any) {
           textAlign: "center",
         }}
       >
-        <div className="flex flex-wrap relative pointer-fine:-mt-6 pointer-fine:pb-6 pointer-fine:overflow-hidden text-center justify-center">
+        <div className="flex flex-wrap relative pointer-fine:-mt-6 pointer-fine:pb-6 text-center justify-center">
           {renderText(heroData.heading.line1)}
         </div>
       </div>
@@ -30,7 +30,7 @@ function Heading({ containerRef, setRandomImage, randomImage }: any) {
           textAlign: "center",
         }}
       >
-        <div className="flex flex-wrap relative pointer-fine:-mt-6 pointer-fine:pb-6 pointer-fine:overflow-hidden text-center justify-center">
+        <div className="flex flex-wrap relative pointer-fine:-mt-6 pointer-fine:pb-6  text-center justify-center">
           {renderText(heroData.heading.line2.split(" ")[0])}
 
           <div
