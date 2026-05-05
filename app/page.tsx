@@ -24,7 +24,7 @@ function page() {
         <Hero />
         <LogoSlider />
         <Intro />
-        {/* <FeatureWork /> */}
+        <FeatureWork />
         <Services />
         <Marquee />
         <Legacy />

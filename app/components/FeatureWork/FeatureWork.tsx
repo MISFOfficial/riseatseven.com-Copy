@@ -17,68 +17,93 @@ function FeatureWork() {
   const imagesRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  useGSAP(() => {
-    if (!sectionRef.current || !titlesRef.current || !imagesRef.current) return;
+  useGSAP(
+    () => {
+      if (!sectionRef.current || !titlesRef.current || !imagesRef.current)
+        return;
 
-    const mm = gsap.matchMedia();
+      const mm = gsap.matchMedia();
 
-    mm.add("(min-width: 1024px)", () => {
-      // Get all images
-      const images = Array.from(imagesRef.current!.querySelectorAll(".circle-mask-container"));
-      
-      images.forEach((img, index) => {
-        ScrollTrigger.create({
-          trigger: img as HTMLElement,
-          start: "top center",
-          end: "bottom center",
-          onToggle: (self) => {
-            if (self.isActive) setActiveIndex(index);
+      mm.add("(min-width: 1024px)", () => {
+        // Calculate dimensions
+        const viewportHeight = window.innerHeight;
+        const imagesTotalHeight = imagesRef.current!.scrollHeight;
+        const titlesTotalHeight = titlesRef.current!.scrollHeight;
+        const containerHeight = sectionRef.current!.clientHeight;
+
+        const titles = Array.from(titlesRef.current!.children) as HTMLElement[];
+        const firstTitle = titles[0];
+        const lastTitle = titles[titles.length - 1];
+
+        // Calculate centering offsets for first and last items
+        const startY =
+          containerHeight / 2 -
+          firstTitle.offsetTop -
+          firstTitle.clientHeight / 2;
+        const endY =
+          containerHeight / 2 -
+          lastTitle.offsetTop -
+          lastTitle.clientHeight / 2;
+
+        // Pin the entire section
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: `+=${featuredWork.length * 50}%`,
+            scrub: 1,
+            pin: true,
+            anticipatePin: 1,
+            onUpdate: (self) => {
+              const progressPerItem = 1 / (featuredWork.length - 1);
+              const index = Math.min(
+                Math.round(self.progress / progressPerItem),
+                featuredWork.length - 1,
+              );
+              setActiveIndex(index);
+            },
           },
         });
+
+        // Set initial positions
+        gsap.set(titlesRef.current, { y: startY });
+
+        // Sync image scroll
+        tl.to(
+          imagesRef.current,
+          {
+            y: -(imagesTotalHeight - viewportHeight + 100),
+            ease: "none",
+          },
+          0,
+        );
+
+        // Sync titles scroll (moving from first item centered to last item centered)
+        tl.to(
+          titlesRef.current,
+          {
+            y: endY,
+            ease: "none",
+          },
+          0,
+        );
+
+        return () => {
+          tl.kill();
+        };
       });
 
-      // Subtle parallax for images side
-      gsap.to(imagesRef.current, {
-        y: -50,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    });
-
-    return () => {
-      mm.revert();
-    };
-  }, { scope: sectionRef });
-
-  // Vertical centering for titles
-  useGSAP(() => {
-    if (!titlesRef.current) return;
-    
-    const titles = Array.from(titlesRef.current.children) as HTMLElement[];
-    const activeTitle = titles[activeIndex];
-    
-    if (activeTitle) {
-      const containerHeight = titlesRef.current.parentElement?.clientHeight || 0;
-      const offsetTop = activeTitle.offsetTop;
-      const titleHeight = activeTitle.clientHeight;
-      
-      gsap.to(titlesRef.current, {
-        y: (containerHeight / 2) - offsetTop - (titleHeight / 2),
-        duration: 0.8,
-        ease: "power3.out",
-      });
-    }
-  }, [activeIndex]);
+      return () => {
+        mm.revert();
+      };
+    },
+    { scope: sectionRef },
+  );
 
   return (
     <div
       ref={sectionRef}
-      className="w-full h-full overflow-hidden bg-grey-900 rounded-3xl grid grid-cols-12 px-5 | lg:pl-8 lg:pr-8 | xl:pl-10 xl:pr-10"
+      className="w-full h-screen overflow-hidden bg-grey-900 rounded-3xl grid grid-cols-12 px-5 | lg:pl-8 lg:pr-8 | xl:pl-10 xl:pr-10 "
     >
       {/* Left Side: Sticky Titles (Desktop) */}
       <div className="relative col-span-12 items-start hidden | lg:flex lg:flex-row lg:items-center | lg:col-span-6 lg:h-[96svh] | 4xl:col-span-6 sticky top-0">
@@ -103,11 +128,18 @@ function FeatureWork() {
                   year={work.year}
                   isActive={activeIndex === index}
                   onClick={() => {
-                    const images = Array.from(imagesRef.current!.querySelectorAll(".circle-mask-container"));
+                    const images = Array.from(
+                      imagesRef.current!.querySelectorAll(
+                        ".circle-mask-container",
+                      ),
+                    );
                     const targetImage = images[index];
                     if (targetImage) {
                       gsap.to(window, {
-                        scrollTo: { y: targetImage, offsetY: window.innerHeight / 4 },
+                        scrollTo: {
+                          y: targetImage,
+                          offsetY: window.innerHeight / 4,
+                        },
                         duration: 1.5,
                         ease: "power4.inOut",
                       });
