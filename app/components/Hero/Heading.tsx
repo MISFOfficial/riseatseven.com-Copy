@@ -9,7 +9,7 @@ function Heading({ containerRef, setRandomImage, randomImage }: any) {
   const { renderText } = useHeroAnimation(containerRef, setRandomImage);
 
   return (
-    <h1 className="flex  flex-wrap text-balance relative pointer-fine:pr-1 pointer-fine:pb-2 pointer-fine:mt-4 pointer-fine:-mb-3  flex-col text-center justify-center text-white text-6xl md:text-8xl xl:text-[8rem]  font-sans-primary font-semibold tracking-tight">
+    <h1 className="flex   flex-wrap text-balance relative pointer-fine:pr-1 pointer-fine:pb-2 pointer-fine:mt-4 pointer-fine:-mb-3  flex-col text-center justify-center text-white text-6xl md:text-8xl xl:text-[8rem]  font-sans-primary font-semibold tracking-tight leading-[0.85]">
       <div
         className="w-full"
         style={{

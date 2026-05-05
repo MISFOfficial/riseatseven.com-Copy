@@ -50,7 +50,7 @@ const Hero: React.FC = () => {
 
               {/* Main Content Layer */}
               <div className="col-start-1 row-start-1 z-20 relative flex justify-center items-center ">
-                <div className="flex flex-col items-center">
+                <div className="flex flex-col items-center ">
                   {/* Badges/Awards */}
                   <div className="flex flex-col items-center justify-center mb-5">
                     <div className="uppercase text-xs font-medium leading-tight tracking-tightish max-w-52 text-balance text-center mb-2 text-white">
@@ -59,7 +59,10 @@ const Hero: React.FC = () => {
                     <div className="flex items-center gap-x-2">
                       <LeftBNP />
                       {heroData.badges.logos.map((logo, i) => (
-                        <div key={i} className="w-16 aspect-20/9 relative">
+                        <div
+                          key={i}
+                          className=" w-10 md:w-16 aspect-20/9 relative"
+                        >
                           <Image
                             width={50}
                             height={50}
