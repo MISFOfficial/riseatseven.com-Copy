@@ -7,6 +7,7 @@ import CommontButton from "../Navigation/CommontButton";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,12 +90,13 @@ const Intro: React.FC = () => {
           </div>
 
           {/* Main Heading with Embedded Image */}
-          <div className="w-full grid | max-w-[24rem] | md:max-w-[40rem] | xl:max-w-xl | 2xl:max-w-[42rem] | 3xl:max-w-[52rem] | 4xl:max-w-5xl | gap-y-3 | md:gap-y-7">
-            <h2 className="inline-flex flex-wrap text-balance relative flex flex-col text-left justify-start text-grey-900 text-5xl/none | lg:text-6xl/none | xl:text-7xl/0.9 | 3xl:text-7.5xl/0.9 | 4xl:text-8xl/0.9 font-sans-primary font-medium tracking-tight">
+          <div className="w-full grid max-w-xl  md:gap-y-7">
+            <h2 className="flex flex-wrap text-balance relative font-semibold text-7xl text-left justify-start text-grey-900 font-sans-primary tracking-tight">
               <div className="flex flex-wrap relative text-left justify-start items-center">
-                {introData.heading.split(" ").map((word, i) => (
+                {introData.heading.split(" ").map((word, i, arr) => (
                   <React.Fragment key={i}>
-                    {i === 2 && (
+                    <span className="inline-block mr-2 js-word">{word}</span>
+                    {i === arr.length - 1 && (
                       <div
                         className="inline shrink-0 flex bg-black/5 relative overflow-hidden mr-2 | pointer-fine:mr-0"
                         style={{
@@ -103,14 +105,14 @@ const Intro: React.FC = () => {
                           height: "45px",
                         }}
                       >
-                        <img
+                        <Image
+                          fill
                           src={introData.image}
                           alt="Intro Deco"
                           className="w-full h-full object-cover"
                         />
                       </div>
                     )}
-                    <span className="inline-block mr-2 js-word">{word}</span>
                   </React.Fragment>
                 ))}
               </div>
