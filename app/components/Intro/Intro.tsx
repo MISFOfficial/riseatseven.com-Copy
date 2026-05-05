@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import Link from "next/link";
 import { introData } from "./IntroContent";
+import CommontButton from "../Navigation/CommontButton";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -12,83 +13,68 @@ gsap.registerPlugin(ScrollTrigger);
 const Intro: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      if (!containerRef.current) return;
-
-      const words = containerRef.current.querySelectorAll(".js-word");
-
-      gsap.from(words, {
-        y: "100%",
-        opacity: 0,
-        duration: 1,
-        ease: "power4.out",
-        stagger: 0.02,
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-        },
-      });
-    },
-    { scope: containerRef },
-  );
-
   return (
     <section ref={containerRef} className="w-full py-12 | xl:py-24">
       <div className="w-full px-4 | md:px-7">
         <div className="w-full flex justify-between items-start | flex-col-reverse | md:flex-row | gap-x-3 | md:gap-x-5 gap-y-3 | md:gap-y-5">
           {/* CTAs - Hidden on Mobile, shown at bottom via flex-col-reverse */}
           <div className="flex flex-wrap gap-4 w-full | md:hidden">
-            {introData.ctas.map((cta, i) => (
-              <Link
-                key={i}
-                href={cta.link}
-                className={`w-full group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tightish capitalize font-sans-primary font-medium overflow-hidden border border-transparent cursor-pointer text-base px-6 py-3 rounded-3xl transition duration-300 pointer-fine:hover:rounded-xl ${
-                  i === 0
-                    ? "bg-white text-grey-900 ring-1 ring-grey-900/5"
-                    : "bg-transparent text-grey-900"
-                }`}
-              >
-                <div className="relative overflow-hidden h-6">
-                  <div className="transition transform pointer-fine:group-hover:-translate-y-6">
-                    <span className="flex items-center gap-x-2">
-                      {cta.text}
-                      <svg
-                        className="w-3 h-3 rotate-45"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 10l7-7m0 0l7 7m-7-7v18"
-                        />
-                      </svg>
-                    </span>
+            {introData.ctas.map((cta, i) =>
+              i === 0 ? (
+                <CommontButton
+                  key={i}
+                  href={cta.link}
+                  label={cta.text}
+                  variant="white"
+                  className="ring-1 ring-grey-900/5 w-full"
+                />
+              ) : (
+                <Link
+                  key={i}
+                  href={cta.link}
+                  className="w-full group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tightish capitalize font-sans-primary font-medium overflow-hidden border border-transparent cursor-pointer text-base px-6 py-3 rounded-3xl transition duration-300 pointer-fine:hover:rounded-xl bg-transparent text-grey-900"
+                >
+                  <div className="relative overflow-hidden h-6">
+                    <div className="transition transform pointer-fine:group-hover:-translate-y-6">
+                      <span className="flex items-center gap-x-2">
+                        {cta.text}
+                        <svg
+                          className="w-3 h-3 rotate-45"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 10l7-7m0 0l7 7m-7-7v18"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                    <div className="transition absolute top-0 left-0 translate-y-6 pointer-fine:group-hover:translate-y-0">
+                      <span className="flex items-center gap-x-2">
+                        {cta.text}
+                        <svg
+                          className="w-3 h-3 rotate-45"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 10l7-7m0 0l7 7m-7-7v18"
+                          />
+                        </svg>
+                      </span>
+                    </div>
                   </div>
-                  <div className="transition absolute top-0 left-0 translate-y-6 pointer-fine:group-hover:translate-y-0">
-                    <span className="flex items-center gap-x-2">
-                      {cta.text}
-                      <svg
-                        className="w-3 h-3 rotate-45"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 10l7-7m0 0l7 7m-7-7v18"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ),
+            )}
           </div>
 
           {/* Description */}
@@ -132,56 +118,62 @@ const Intro: React.FC = () => {
 
             {/* CTAs - Desktop */}
             <div className="flex flex-wrap gap-4 hidden | md:flex">
-              {introData.ctas.map((cta, i) => (
-                <Link
-                  key={i}
-                  href={cta.link}
-                  className={`group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tightish capitalize font-sans-primary font-medium overflow-hidden border border-transparent cursor-pointer text-base px-6 py-3 rounded-3xl transition duration-300 pointer-fine:hover:rounded-xl ${
-                    i === 0
-                      ? "bg-white text-grey-900 ring-1 ring-grey-900/5"
-                      : "bg-transparent text-grey-900"
-                  }`}
-                >
-                  <div className="relative overflow-hidden h-6">
-                    <div className="transition transform pointer-fine:group-hover:-translate-y-6">
-                      <span className="flex items-center gap-x-2">
-                        {cta.text}
-                        <svg
-                          className="w-3 h-3 rotate-45"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 10l7-7m0 0l7 7m-7-7v18"
-                          />
-                        </svg>
-                      </span>
+              {introData.ctas.map((cta, i) =>
+                i === 0 ? (
+                  <CommontButton
+                    key={i}
+                    href={cta.link}
+                    label={cta.text}
+                    variant="white"
+                    className="ring-1 ring-grey-900/5"
+                  />
+                ) : (
+                  <Link
+                    key={i}
+                    href={cta.link}
+                    className="group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tightish capitalize font-sans-primary font-medium overflow-hidden border border-transparent cursor-pointer text-base px-6 py-3 rounded-3xl transition duration-300 pointer-fine:hover:rounded-xl bg-transparent text-grey-900"
+                  >
+                    <div className="relative overflow-hidden h-6">
+                      <div className="transition transform pointer-fine:group-hover:-translate-y-6">
+                        <span className="flex items-center gap-x-2">
+                          {cta.text}
+                          <svg
+                            className="w-3 h-3 rotate-45"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 10l7-7m0 0l7 7m-7-7v18"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+                      <div className="transition absolute top-0 left-0 translate-y-6 pointer-fine:group-hover:translate-y-0">
+                        <span className="flex items-center gap-x-2">
+                          {cta.text}
+                          <svg
+                            className="w-3 h-3 rotate-45"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 10l7-7m0 0l7 7m-7-7v18"
+                            />
+                          </svg>
+                        </span>
+                      </div>
                     </div>
-                    <div className="transition absolute top-0 left-0 translate-y-6 pointer-fine:group-hover:translate-y-0">
-                      <span className="flex items-center gap-x-2">
-                        {cta.text}
-                        <svg
-                          className="w-3 h-3 rotate-45"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 10l7-7m0 0l7 7m-7-7v18"
-                          />
-                        </svg>
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+                  </Link>
+                ),
+              )}
             </div>
           </div>
         </div>

@@ -20,16 +20,16 @@ function page() {
         <Navigation />
       </header>
 
-      <main className="grow ">
+      <main className="grow">
         <Hero />
         <LogoSlider />
-        {/* <Intro />
-        <FeatureWork />
-        <Services />
-        <Marquee />
-        <Legacy />
-        <Insights />
-        <PreFooter /> */}
+        <Intro />
+        {/* <FeatureWork /> */}
+        {/* <Services /> */}
+        {/* <Marquee /> */}
+        {/* <Legacy /> */}
+        {/* <Insights /> */}
+        {/* <PreFooter /> */}
       </main>
       <Footer />
     </div>
