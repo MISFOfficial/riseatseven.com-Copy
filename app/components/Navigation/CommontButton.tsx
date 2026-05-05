@@ -1,6 +1,5 @@
 import React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 
 interface CommontButtonProps {
   href?: string;
@@ -20,65 +19,48 @@ function CommontButton({
   onClick,
 }: CommontButtonProps) {
   const baseStyles =
-    "group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tightish capitalize font-sans font-medium overflow-hidden border border-transparent cursor-pointer focus:outline-none md:w-auto text-base px-6 py-3 rounded-full hover:rounded-xl transition-all duration-200";
+    "group inline-flex shrink-0 justify-center gap-x-2 items-center relative leading-tight tracking-tightish capitalize font-sans-primary font-medium overflow-hidden border border-transparent cursor-pointer focus:outline-none md:w-auto text-base px-6 py-3 rounded-3xl transition-all duration-300 pointer-fine:hover:rounded-xl";
 
-  const variants = {
-    primary: "bg-grey-900 text-white hover:bg-black",
-    secondary: isScrolled
-      ? "bg-grey-900 text-white hover:bg-black"
-      : "bg-white text-grey-900 hover:bg-grey-100",
-    white: "bg-white text-grey-900 hover:bg-grey-100",
+  const colorVariants = {
+    primary: "bg-grey-900 text-white",
+    secondary: isScrolled ? "bg-grey-900 text-white" : "bg-white text-grey-900",
+    white: "bg-white text-grey-900",
   };
 
   const content = (
-    <div className="relative overflow-hidden h-6">
-      <motion.div
-        className="flex flex-col"
-        initial={false}
-        animate={{ y: 0 }}
-        whileHover={{ y: -24 }}
-        transition={{ type: "spring", stiffness: 400, damping: 30 }}
-      >
-        <div className="flex items-center gap-x-2 h-6">
-          <span>{label}</span>
-          <span className="inline-block text-xs mt-1">↗</span>
-        </div>
-        <div className="flex items-center gap-x-2 h-6">
-          <span>{label}</span>
-          <span className="inline-block text-xs mt-1">↗</span>
-        </div>
-      </motion.div>
+    <div className="relative overflow-hidden">
+      {/* First row — slides out up on hover */}
+      <div className="flex items-center gap-x-2 transition duration-300 pointer-fine:group-hover:-translate-y-6">
+        <span>{label}</span>
+        <span className="inline-block text-xs mt-1">↗</span>
+      </div>
+      {/* Second row — slides in from below on hover */}
+      <div className="flex items-center gap-x-2 transition duration-300 absolute top-0 left-0 translate-y-6 pointer-fine:group-hover:translate-y-0">
+        <span>{label}</span>
+        <span className="inline-block text-xs mt-1">↗</span>
+      </div>
     </div>
   );
+
+  const cls = `${baseStyles} ${colorVariants[variant]} ${className}`;
 
   if (href) {
     if (href.startsWith("http")) {
       return (
-        <a
-          href={href}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`${baseStyles} ${variants[variant]} ${className}`}
-        >
+        <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
           {content}
         </a>
       );
     }
     return (
-      <Link
-        href={href}
-        className={`${baseStyles} ${variants[variant]} ${className}`}
-      >
+      <Link href={href} className={cls}>
         {content}
       </Link>
     );
   }
 
   return (
-    <button
-      onClick={onClick}
-      className={`${baseStyles} ${variants[variant]} ${className}`}
-    >
+    <button onClick={onClick} className={cls}>
       {content}
     </button>
   );

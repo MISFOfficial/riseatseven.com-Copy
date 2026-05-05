@@ -143,10 +143,10 @@ function Navigation() {
 
           {/* CTA Button */}
           <div className="hidden lg:inline-flex">
-            <CommontButton 
-              href="/connect-with-us" 
-              label="Get in touch" 
-              isScrolled={isScrolled} 
+            <CommontButton
+              href="/connect-with-us"
+              label="Get in touch"
+              isScrolled={isScrolled}
               variant="secondary"
             />
           </div>
@@ -214,9 +214,9 @@ function Navigation() {
                     )}
                     <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-40" />
                     <div className="absolute bottom-6 left-6 right-6 flex justify-center">
-                      <CommontButton 
-                        href="/connect-with-us" 
-                        label="Get in touch" 
+                      <CommontButton
+                        href="/#"
+                        label="Get in touch"
                         variant="white"
                       />
                     </div>
