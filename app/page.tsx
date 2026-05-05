@@ -26,7 +26,7 @@ function page() {
         <Intro />
         {/* <FeatureWork /> */}
         <Services />
-        {/* <Marquee /> */}
+        <Marquee />
         {/* <Legacy /> */}
         {/* <Insights /> */}
         {/* <PreFooter /> */}
