@@ -4,7 +4,7 @@ function TopAd() {
   return (
     <a
       href=""
-      className="group flex justify-center z-60 relative items-center text-xs w-full py-2 px-5 text-balance  text-center tracking-tight leading-none font-semibold rounded-2xl transition transition-rounded | lg:text-sm | pointer-fine:hover:rounded-md text-grey-900 bg-mint"
+      className="group flex justify-center z-50 relative items-center text-xs w-full py-2 px-5 text-balance  text-center tracking-tight leading-none font-semibold rounded-2xl transition transition-rounded | lg:text-sm | pointer-fine:hover:rounded-md text-grey-900 bg-mint"
     >
       <div className="block mt-0.5 | lg:hidden tracking-[-0.035rem]">
         🚨 Where are your customers actually searching? Download the report
