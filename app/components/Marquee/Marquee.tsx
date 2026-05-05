@@ -36,7 +36,6 @@ const Marquee: React.FC = () => {
     { scope: containerRef },
   );
 
-
   const handleMouseEnter = () => {
     setIsHovered(true);
     window.dispatchEvent(
@@ -81,10 +80,7 @@ const Marquee: React.FC = () => {
 
       <div className="w-full px-0">
         <div className="w-full relative overflow-hidden">
-          <div
-            ref={marqueeRef}
-            className="flex whitespace-nowrap py-10 | lg:py-20"
-          >
+          <div ref={marqueeRef} className="flex whitespace-nowrap ">
             {displayItems.map((item, i) => (
               <div
                 key={i}
