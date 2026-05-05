@@ -26,10 +26,10 @@ const Legacy: React.FC = () => {
         },
       });
 
-      // Set initial stack state
+      // Set initial stack state with progressive right-side tilt
       gsap.set(cards, {
         y: 0,
-        rotate: (i) => (i === 0 ? 0 : i % 2 === 0 ? 6 : 6),
+        rotate: (i) => (i + 1) * 6, // Each card tilts more than the one above it
         scale: (i) => 1 - i * 0.03,
       });
 
