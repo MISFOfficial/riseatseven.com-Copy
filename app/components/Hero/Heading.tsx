@@ -1,12 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import React, { useState } from "react";
-import { useHeroAnimation } from "./GSAP";
+import React from "react";
 import { heroData } from "./HeroContent";
 
-function Heading({ containerRef, setRandomImage, randomImage }: any) {
-  const { renderText } = useHeroAnimation(containerRef, setRandomImage);
+function Heading({ renderText, randomImage }: { renderText: (text: string) => React.ReactNode; randomImage: string }) {
 
   return (
     <h1 className="flex   flex-wrap text-balance relative pointer-fine:pr-1 pointer-fine:pb-2 pointer-fine:mt-4 pointer-fine:-mb-3  flex-col text-center justify-center text-white text-6xl md:text-8xl xl:text-[8rem]  font-sans-primary font-medium tracking-[-4px] leading-[0.85] ">

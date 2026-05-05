@@ -6,11 +6,13 @@ import Image from "next/image";
 import Heading from "./Heading";
 import LeftBNP from "./_Components/LeftBNP";
 import RightBNP from "./_Components/RightBNP";
+import { useHeroAnimation } from "./GSAP";
 import Partner from "./_Components/Partner";
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [randomImage, setRandomImage] = useState("");
+  const { renderText } = useHeroAnimation(containerRef, setRandomImage);
 
   return (
     <section ref={containerRef} className="w-full pt-2">
@@ -78,8 +80,7 @@ const Hero: React.FC = () => {
 
                   {/* Heading */}
                   <Heading
-                    containerRef={containerRef}
-                    setRandomImage={setRandomImage}
+                    renderText={renderText}
                     randomImage={randomImage}
                   />
 
