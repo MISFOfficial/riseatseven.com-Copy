@@ -80,11 +80,11 @@ const Hero: React.FC = () => {
                     randomImage={randomImage}
                   />
 
-                  <div className="inline-flex flex-wrap text-balance relative text-left justify-start text-white text-lg/tight | md:text-xl/tight | xl:text-2xl/none | 4xl:text-4xl/none font-sans-primary font-medium tracking-tight mt-2 | lg:mt-4">
+                  <div className="inline-flex flex-wrap text-balance relative   text-left justify-start text-white text-lg/tight | md:text-xl/tight | xl:text-2xl/none | xl:text-3xl/none | 4xl:text-4xl/none font-sans-primary font-medium tracking-tight js-heading mt-2 | lg:mt-4">
                     on every searchable platform
                   </div>
 
-                  <div className="hidden xl:block mt-8">
+                  <div className="hidden xl:block mt-3">
                     <Partner />
                   </div>
                 </div>
