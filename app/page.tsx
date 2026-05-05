@@ -29,7 +29,7 @@ function page() {
         <Marquee />
         <Legacy />
         <Insights />
-        {/* <PreFooter /> */}
+        <PreFooter />
       </main>
       <Footer />
     </div>
