@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "./components/SmothScroll/SmoothScroll";
+import PageReveal from "./components/PageReveal/PageReveal";
+import CustomCursor from "./components/CustomCursor/CustomCursor";
 
 export const metadata: Metadata = {
   title: "Rise at Seven | Award Winning Search-First Content Marketing Agency",
@@ -16,6 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <SmoothScroll>
+        <PageReveal />
+        <CustomCursor />
         <body className="min-h-full flex flex-col">{children}</body>
       </SmoothScroll>
     </html>

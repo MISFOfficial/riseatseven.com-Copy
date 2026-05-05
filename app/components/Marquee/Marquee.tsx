@@ -10,7 +10,6 @@ gsap.registerPlugin(ScrollTrigger);
 const Marquee: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
-  const cursorRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
   useGSAP(
@@ -37,42 +36,23 @@ const Marquee: React.FC = () => {
     { scope: containerRef },
   );
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cursorRef.current || !containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    gsap.to(cursorRef.current, {
-      x: x,
-      y: y,
-      duration: 0.5,
-      ease: "power3.out",
-    });
-  };
 
   const handleMouseEnter = () => {
     setIsHovered(true);
-    if (cursorRef.current) {
-      gsap.to(cursorRef.current, {
-        scale: 1,
-        opacity: 1,
-        duration: 0.4,
-        ease: "back.out(1.7)",
-      });
-    }
+    window.dispatchEvent(
+      new CustomEvent("component-cursor-button", {
+        detail: { active: true, text: "Send Us Your Brief" },
+      }),
+    );
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    if (cursorRef.current) {
-      gsap.to(cursorRef.current, {
-        scale: 0,
-        opacity: 0,
-        duration: 0.3,
-        ease: "power2.in",
-      });
-    }
+    window.dispatchEvent(
+      new CustomEvent("component-cursor-button", {
+        detail: { active: false, text: null },
+      }),
+    );
   };
 
   const marqueeItems = [
@@ -92,29 +72,12 @@ const Marquee: React.FC = () => {
 
   return (
     <section
-      ref={containerRef}
       className="w-full py-0 overflow-hidden relative"
       style={{ cursor: isHovered ? "none" : "auto" }}
-      onMouseMove={handleMouseMove}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       {/* Custom Cursor */}
-      <div
-        ref={cursorRef}
-        className=" absolute z-50 flex items-center justify-center border"
-        style={{
-          borderRadius: "50%",
-          backgroundColor: "#b2f6e3",
-        }}
-      >
-        <span
-          className="text-grey-900 text-center font-sans-primary font-medium leading-tight"
-          style={{ fontSize: "13px", maxWidth: "90px" }}
-        >
-          Send us your brief
-        </span>
-      </div>
 
       <div className="w-full px-0">
         <div className="w-full relative overflow-hidden">
