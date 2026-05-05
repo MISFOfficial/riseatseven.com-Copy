@@ -79,6 +79,8 @@ export const useHeroAnimation = (
             position: "relative",
             display: "inline-block",
             overflow: "hidden",
+            paddingBottom: "0.25em",
+            marginBottom: "-0.25em",
           }}
         >
           {word.split("").map((char, j) => (
