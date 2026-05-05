@@ -28,7 +28,7 @@ function page() {
         <Services />
         <Marquee />
         <Legacy />
-        {/* <Insights /> */}
+        <Insights />
         {/* <PreFooter /> */}
       </main>
       <Footer />
