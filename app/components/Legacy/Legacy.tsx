@@ -34,17 +34,17 @@ const Legacy: React.FC = () => {
       });
 
       cards.forEach((card, i) => {
-        // All cards now peel off to reveal the space beneath
+        // All cards now peel off with the exact same behavior as the first card
         tl.to(
           card,
           {
             y: "-130%",
-            rotate: i % 2 === 0 ? -15 : 15,
+            rotate: -50, // Standardized to match the first card
             opacity: 0,
             scale: 1.1,
             ease: "power2.inOut",
           },
-          i, // Sequence them
+          i, // Sequence them based on index
         );
 
         // Scale up the next card slightly as the current one peels off
@@ -56,7 +56,7 @@ const Legacy: React.FC = () => {
               rotate: 0,
               ease: "power2.inOut",
             },
-            "<", // Run concurrently with the peel off
+            "<", // Straighten concurrently with the peel off for a smooth transition
           );
         }
       });
