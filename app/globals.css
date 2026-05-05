@@ -61,6 +61,16 @@
   --font-size-1xs: 0.625rem;
 }
 
+*::selection {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+*::-moz-selection {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #111212;

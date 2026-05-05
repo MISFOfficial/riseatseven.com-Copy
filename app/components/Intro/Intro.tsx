@@ -90,7 +90,7 @@ const Intro: React.FC = () => {
           </div>
 
           {/* Main Heading with Embedded Image */}
-          <div className="w-full grid max-w-[850]   md:gap-y-7 border">
+          <div className="w-full grid max-w-[850]   md:gap-y-7">
             <h2 className=" flex-wrap text-balance relative  flex flex-col text-left justify-start text-grey-900 text-[3.125rem] | lg:text-[3.75rem] | xl:text-[5.5625rem] font-sans-primary font-semibold tracking-tight leading-[.9] js-heading  ">
               <div className="flex flex-wrap relative text-left justify-start items-center">
                 {introData.heading.split(" ").map((word, i, arr) => (
