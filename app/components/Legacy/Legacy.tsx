@@ -38,9 +38,8 @@ const Legacy: React.FC = () => {
         tl.to(
           card,
           {
-            y: "-130%",
+            y: "-200%",
             rotate: -50, // Standardized to match the first card
-            opacity: 0,
             scale: 1.1,
             ease: "power2.inOut",
           },
@@ -48,9 +47,9 @@ const Legacy: React.FC = () => {
         );
 
         // Scale up the next card slightly as the current one peels off
-        if (cards[i + 0.5]) {
+        if (cards[i + 1]) {
           tl.to(
-            cards[i + 0.5],
+            cards[i + 1],
             {
               scale: 1,
               rotate: 0,
@@ -69,7 +68,7 @@ const Legacy: React.FC = () => {
       <div className="w-full h-[300vh] relative">
         <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
           <div className="absolute top-10 w-full text-center">
-            <h2 className="text-grey-900 text-lg font-sans-primary font-medium tracking-tight">
+            <h2 className="text-grey-900 text-xl font-sans-primary font-semibold tracking-[-1.5px]">
               {legacyData.title}
             </h2>
           </div>
