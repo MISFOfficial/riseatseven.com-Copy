@@ -44,13 +44,13 @@ const Legacy: React.FC = () => {
             scale: 1.1,
             ease: "power2.inOut",
           },
-          i, // Sequence them based on index
+          i * 0.5, // Start when previous is 50% done
         );
 
         // Scale up the next card slightly as the current one peels off
-        if (cards[i + 1]) {
+        if (cards[i + 0.5]) {
           tl.to(
-            cards[i + 1],
+            cards[i + 0.5],
             {
               scale: 1,
               rotate: 0,
