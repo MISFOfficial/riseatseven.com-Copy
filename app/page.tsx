@@ -23,13 +23,13 @@ function page() {
       <main className="grow ">
         <Hero />
         <LogoSlider />
-        <Intro />
+        {/* <Intro />
         <FeatureWork />
         <Services />
         <Marquee />
         <Legacy />
         <Insights />
-        <PreFooter />
+        <PreFooter /> */}
       </main>
       <Footer />
     </div>

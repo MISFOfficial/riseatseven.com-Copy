@@ -30,16 +30,30 @@ const LogoSlider: React.FC = () => {
     () => {
       if (!containerRef.current) return;
 
-      // Parallax scroll effect for ITEMS ONLY
-      // Scrolling down moves it Left (xPercent: -7)
-      // Scrolling up moves it back Right (towards 0) smoothly
-      gsap.to(containerRef.current, {
-        xPercent: -7, 
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 100%",
-          end: "bottom 0%",
-          scrub: 2, // High scrub for slow, smooth movement
+      // Custom ScrollTrigger to only interact on UP scroll
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top 100%",
+        end: "bottom 0%",
+        onUpdate: (self) => {
+          // self.direction is 1 when scrolling DOWN, -1 when scrolling UP
+          if (self.direction === -1) {
+            // This is the interaction on UP scroll
+            gsap.to(containerRef.current, {
+              xPercent: 12, // Increased for better visibility
+              duration: 1.2,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          } else {
+            // This happens when scrolling DOWN (or no interaction)
+            gsap.to(containerRef.current, {
+              xPercent: 0,
+              duration: 1.2,
+              ease: "power2.out",
+              overwrite: "auto",
+            });
+          }
         },
       });
     },
@@ -62,14 +76,14 @@ const LogoSlider: React.FC = () => {
             className="relative w-full col-span-20 | md:col-span-16 | lg:col-span-17 | xl:col-span-18 overflow-hidden"
             style={{
               maskImage:
-                "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+                "linear-gradient(to right, transparent, black 25%, black 85%, transparent)",
               WebkitMaskImage:
-                "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+                "linear-gradient(to right, transparent, black 25%, black 85%, transparent)",
             }}
           >
             {/* GSAP Moving Container */}
             <div ref={containerRef} className="w-[130vw] relative z-0">
-              <Marquee speed={45} pauseOnHover={true} gradient={false}>
+              <Marquee speed={45} pauseOnHover={false} gradient={false}>
                 {items.map((logo, i) => (
                   <div
                     key={i}
