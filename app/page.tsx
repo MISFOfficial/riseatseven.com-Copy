@@ -25,7 +25,7 @@ function page() {
         <LogoSlider />
         <Intro />
         {/* <FeatureWork /> */}
-        {/* <Services /> */}
+        <Services />
         {/* <Marquee /> */}
         {/* <Legacy /> */}
         {/* <Insights /> */}
