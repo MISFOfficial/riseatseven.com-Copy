@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
       <div className="w-full px-0">
         <div className="w-full h-screen-fix h-svh relative ">
           {/* Bottom Text Overlays */}
-          <div className="p-7 items-end justify-between absolute bottom-0 left-0 z-30 w-full  flex">
+          <div className="p-7 items-end justify-center md:justify-between absolute bottom-0 left-0 z-30 w-full  flex">
             <div className="hidden shrink-0 | md:inline max-w-[400px]">
               <div className="w-full text-center | md:text-left">
                 <p className="text-sm font-sans-primary leading-normal text-pretty text-white mb-0!">
