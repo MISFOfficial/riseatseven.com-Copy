@@ -67,6 +67,19 @@ const Marquee: React.FC = () => {
     ...marqueeItems,
     ...marqueeItems,
     ...marqueeItems,
+    ...marqueeItems,
+    ...marqueeItems,
+    ...marqueeItems,
+    ...marqueeItems,
+    ...marqueeItems,
+    ...marqueeItems,
+    ...marqueeItems,
+    ...marqueeItems,
+    ...marqueeItems,
+    ...marqueeItems,
+    ...marqueeItems,
+    ...marqueeItems,
+    ...marqueeItems,
   ];
 
   return (
