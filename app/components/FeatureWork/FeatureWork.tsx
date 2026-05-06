@@ -49,10 +49,11 @@ function FeatureWork() {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top top",
+            start: "center center",
             end: `+=${featuredWork.length * 50}%`,
             scrub: 1,
             pin: true,
+            pinSpacing: true,
             anticipatePin: 1,
             onUpdate: (self) => {
               const progressPerItem = 1 / (featuredWork.length - 1);
@@ -72,7 +73,7 @@ function FeatureWork() {
         tl.to(
           imagesRef.current,
           {
-            y: -(imagesTotalHeight - viewportHeight + 100),
+            y: -(imagesTotalHeight - containerHeight + 100),
             ease: "none",
           },
           0,
@@ -103,10 +104,10 @@ function FeatureWork() {
   return (
     <div
       ref={sectionRef}
-      className="w-full h-screen overflow-hidden bg-grey-900 rounded-3xl grid grid-cols-12 px-5 | lg:pl-8 lg:pr-8 | xl:pl-10 xl:pr-10 "
+      className="w-[96vw] h-[96vh] overflow-hidden bg-grey-900 rounded-3xl grid grid-cols-12 px-5  | lg:pl-8 lg:pr-8 | xl:pl-10 xl:pr-10 mx-auto "
     >
       {/* Left Side: Sticky Titles (Desktop) */}
-      <div className="relative col-span-12 items-start hidden | lg:flex lg:flex-row lg:items-center | lg:col-span-6 lg:h-[96svh] | 4xl:col-span-6 sticky top-0">
+      <div className="relative col-span-12 items-start hidden | lg:flex lg:flex-row lg:items-center | lg:col-span-6 lg:h-full | 4xl:col-span-6 sticky top-0">
         <div className="flex flex-col items-start relative z-10 h-full pt-16 | lg:pt-24 lg:pb-32 lg:gap-y-20 w-full">
           <h2 className="inline-flex flex-wrap text-balance relative text-left justify-start text-white text-md/tight | lg:text-lg/tight | xl:text-xl/tight | 4xl:text-2xl/none font-sans-primary font-medium tracking-tight js-heading">
             Featured Work
