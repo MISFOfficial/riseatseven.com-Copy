@@ -88,10 +88,6 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
             isHovered ? "text-grey-900 " : "text-white"
           }`}
         >
-          <i
-            className="fa-regular fa-sharp fa-magnifying-glass"
-            aria-hidden="true"
-          ></i>
           <div>{work.service}</div>
           <i
             className="fa-regular fa-sharp fa-chart-line-up"
@@ -125,17 +121,6 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
       >
         <div className="inline-flex flex-wrap text-balance relative text-left justify-start text-current text-3xl/none | lg:text-4xl/none | xl:text-5xl/none | 3xl:text-6xl/none font-sans-primary font-medium tracking-tight js-heading">
           {work.description}
-        </div>
-
-        <div className="w-full flex items-end justify-between">
-          <div className="relative w-20 h-10 lg:w-32 lg:h-14">
-            <Image
-              fill
-              src={work.image}
-              className="object-contain grayscale invert brightness-0"
-              alt="Client Logo"
-            />
-          </div>
         </div>
       </div>
     </a>
