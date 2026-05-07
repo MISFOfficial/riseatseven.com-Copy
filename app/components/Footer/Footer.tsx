@@ -8,9 +8,9 @@ export default function Footer() {
   const { newsletter, socials, columns, bottom } = footerContent;
 
   return (
-    <section className="w-full py-0" id="footer">
+    <section className="w-full py-0 " id="footer">
       <div className="w-full px-0">
-        <div className="p-2 grid bg-grey-900 rounded-3xl relative mt-8 lg:mt-0 js-footer">
+        <div className=" grid bg-grey-900 rounded-3xl relative js-footer">
           <div
             className="col-start-1 row-start-1 grid grid-cols-12 pt-14 pb-6 relative z-20 lg:py-10 px-4 md:px-7 gap-x-3 md:gap-x-5 gap-y-3 md:gap-y-7 js-footer-content"
             style={{ opacity: 1 }}
@@ -76,7 +76,7 @@ export default function Footer() {
             <Logo />
 
             {/* Bottom Row */}
-            <div className="col-span-12 flex justify-between flex-col mt-10 items-end md:flex-row lg:items-center lg:mt-0 pt-8 border-t border-white/5">
+            <div className="col-span-12 flex justify-between flex-col mt-10 items-end md:flex-row lg:items-center lg:mt-0 pt-2">
               <div className="flex gap-x-2 gap-y-2 flex-wrap items-center md:gap-3">
                 <div className="text-white font-light leading-tight text-[10px] md:text-xs">
                   {bottom.copyright}
