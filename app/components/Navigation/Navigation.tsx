@@ -15,6 +15,7 @@ function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [hideAnnouncementBar, setHideAnnouncementBar] = useState(false);
+  const [isInFeatureWork, setIsInFeatureWork] = useState(false);
 
   const [hoverStyles, setHoverStyles] = useState({
     opacity: 0,
@@ -37,6 +38,16 @@ function Navigation() {
 
       // Scroll state
       setIsScrolled(currentScrollY > 50);
+
+      // Detect Featured Work section
+      const featuredSection = document.getElementById("featured-work-section");
+      if (featuredSection) {
+        const rect = featuredSection.getBoundingClientRect();
+        // If the section is currently in view (top is above viewport top and bottom is still visible)
+        setIsInFeatureWork(rect.top < 100 && rect.bottom > 0);
+      } else {
+        setIsInFeatureWork(false);
+      }
 
       // Hide/Show on scroll direction
       if (currentScrollY > 100 && currentScrollY > prevScrollY.current) {
@@ -101,7 +112,7 @@ function Navigation() {
       <nav
         className={`w-full fixed top-0 left-0 z-50 flex items-center justify-center transition-all duration-500 ${
           isScrolled ? "p-3" : "px-6 py-17"
-        } ${isVisible ? "translate-y-0" : "-translate-y-full"}`}
+        } ${isVisible && !isInFeatureWork ? "translate-y-0" : "-translate-y-full"}`}
       >
         <div
           className={`w-full max-w-8xl flex items-center justify-between transition-all duration-500 ${isScrolled ? "bg-white/80 backdrop-blur-xl px-4 lg:px-3 py-1.5 rounded-full shadow-sm" : ""}`}
