@@ -38,10 +38,7 @@ function FeatureWork() {
         // Calculate centering offsets for first and last items
         const startY = 0;
         const endY =
-          containerHeight -
-          lastTitle.offsetTop -
-          lastTitle.clientHeight -
-          100; // Offset for bottom spacing
+          containerHeight - lastTitle.offsetTop - lastTitle.clientHeight - 100; // Offset for bottom spacing
 
         // Pin the entire section
         const tl = gsap.timeline({
@@ -117,10 +114,7 @@ function FeatureWork() {
           <div className="relative flex-1 overflow-hidden hidden pr-5 | lg:inline-block w-full">
             {/* Gradient Overlays (Tailwind v4 syntax) */}
 
-            <div
-              ref={titlesRef}
-              className="grid gap-y-6 relative z-10 py-16 lg:py-24"
-            >
+            <div ref={titlesRef} className="grid  relative z-10 py-16 lg:py-24">
               {featuredWork.map((work, index) => (
                 <WorkTitle
                   key={work.id}

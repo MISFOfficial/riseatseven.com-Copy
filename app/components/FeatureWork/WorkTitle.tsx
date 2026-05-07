@@ -20,7 +20,7 @@ const WorkTitle: React.FC<WorkTitleProps> = ({
       className={`relative transition-all duration-700 ease-out origin-left ${
         isActive
           ? "opacity-100 scale-100"
-          : "opacity-20 scale-95 hover:opacity-40"
+          : "opacity-20 scale-100 hover:opacity-40"
       }`}
       onClick={onClick}
     >
