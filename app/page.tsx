@@ -14,13 +14,13 @@ import PreFooter from "./components/PreFooter/PreFooter";
 
 function page() {
   return (
-    <div className="flex flex-col min-h-screen bg-grey-100 selection:bg-mint selection:text-grey-900 p-[8px]">
+    <div className="flex flex-col min-h-screen bg-grey-100 selection:bg-mint selection:text-grey-900 py-[8px]">
       <TopAd />
       <header className="sticky top-0 z-50">
         <Navigation />
       </header>
 
-      <main className="grow">
+      <main className="grow px-[8px]">
         <Hero />
         <LogoSlider />
         <Intro />

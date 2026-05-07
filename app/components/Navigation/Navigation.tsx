@@ -111,11 +111,11 @@ function Navigation() {
     <>
       <nav
         className={`w-full fixed top-0 left-0 z-50 flex items-center justify-center transition-all duration-500 ${
-          isScrolled ? "p-3" : "px-6 py-17"
+          isScrolled ? "p-0 md:p-3" : "px-6 py-17"
         } ${isVisible && !isInFeatureWork ? "translate-y-0" : "-translate-y-full"}`}
       >
         <div
-          className={`w-full max-w-8xl flex items-center justify-between transition-all duration-500 ${isScrolled ? "bg-white/80 backdrop-blur-xl px-4 lg:px-3 py-1.5 rounded-full shadow-sm" : ""}`}
+          className={`w-full max-w-8xl flex items-center justify-between transition-all duration-500 ${isScrolled ? "bg-white/80 backdrop-blur-sm px-4 lg:px-3 py-6 md:py-1.5  md:rounded-full shadow-sm" : ""}`}
         >
           {/* Logo */}
           <Logo isScrolled={isScrolled} />

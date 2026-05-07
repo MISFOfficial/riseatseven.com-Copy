@@ -227,11 +227,6 @@ const Insights: React.FC = () => {
           </Swiper>
 
           {/* Pagination Progress Bar */}
-          <div className="mt-12 px-4 md:px-7">
-            <div className="js-insights-pagination swiper-pagination-progressbar static! h-0.5! bg-grey-200 rounded-full overflow-hidden">
-              <span className="swiper-pagination-progressbar-fill bg-grey-900! transition-all! duration-500!"></span>
-            </div>
-          </div>
         </div>
 
         {/* Mobile View Explore More */}
