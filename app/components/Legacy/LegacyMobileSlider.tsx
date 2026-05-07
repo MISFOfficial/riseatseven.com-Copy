@@ -35,7 +35,7 @@ const LegacyMobileSlider: React.FC = () => {
               className={`flex flex-col rounded-3xl overflow-hidden ${item.bgColor} ${item.textColor} shadow-xl`}
             >
               {/* Wide rectangular image — matches screenshots */}
-              <div className="w-full aspect-[4/3] overflow-hidden">
+              <div className="w-full aspect-4/3 overflow-hidden">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -58,13 +58,15 @@ const LegacyMobileSlider: React.FC = () => {
       </Swiper>
 
       {/* Continuous line pagination bar — no breaks */}
-      <div className="w-full px-12 mt-8">
+      <div 
+        className="mx-auto mt-8" 
+        style={{ width: 'calc(100% / 1.08)' }}
+      >
         <div className="w-full h-[3px] bg-black/10 relative rounded-full overflow-hidden">
           <div
-            className="absolute top-0 h-full bg-grey-900 transition-all duration-300 rounded-full"
+            className="absolute top-0 left-0 h-full bg-grey-900 transition-all duration-300 rounded-full"
             style={{
-              width: `${100 / total}%`,
-              left: `${(activeIndex / total) * 100}%`,
+              width: `${((activeIndex + 1) / total) * 100}%`,
             }}
           />
         </div>
