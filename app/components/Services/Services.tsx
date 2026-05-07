@@ -6,7 +6,7 @@ import Image from "next/image";
 
 const Services: React.FC = () => {
   return (
-    <section className="w-full pb-12 | xl:pb-24">
+    <section className="w-full">
       <div className="w-full pr-4 pl-0 | md:px-7">
         {/* Header */}
         <div className="grid grid-cols-12 overflow-hidden | lg:pt-5 | gap-y-3 | md:gap-y-7 gap-x-3 | md:gap-x-5 mb-10">
@@ -23,7 +23,8 @@ const Services: React.FC = () => {
                       height: "55px",
                     }}
                   >
-                    <img
+                    <Image
+                      fill
                       src={servicesData.titleImage}
                       alt="Services deco"
                       className="w-full h-full object-cover"

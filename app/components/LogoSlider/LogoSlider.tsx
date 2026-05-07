@@ -61,7 +61,7 @@ const LogoSlider: React.FC = () => {
   );
 
   return (
-    <section className="w-full pt-6 | xl:pt-12 overflow-hidden relative">
+    <section className="w-full overflow-hidden relative">
       <div className="w-full px-4 | md:px-7">
         <div className="grid grid-cols-20 w-full gap-y-2 relative">
           {/* Label */}

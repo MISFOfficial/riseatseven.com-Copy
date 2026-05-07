@@ -88,10 +88,7 @@ const Insights: React.FC = () => {
   );
 
   return (
-    <section
-      ref={containerRef}
-      className="bg-grey-100 py-16 md:py-24 overflow-hidden"
-    >
+    <section ref={containerRef} className="bg-grey-100  overflow-hidden">
       <div className="grid grid-cols-12 gap-y-7 md:gap-y-12 px-4 md:px-7">
         {/* Header Section */}
         <div className="col-span-12">

@@ -21,7 +21,7 @@ function page() {
         <Navigation />
       </header>
 
-      <main className="grow px-[8px] flex flex-col gap-12 mg:gap-24">
+      <main className="grow px-[8px] flex flex-col gap-12 mg:gap-24 mb-12 md:mb-24">
         <Hero />
         <LogoSlider />
         <Intro />

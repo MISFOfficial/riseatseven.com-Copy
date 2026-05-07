@@ -64,7 +64,7 @@ const Legacy: React.FC = () => {
   );
 
   return (
-    <section ref={containerRef} className="w-full relative py-0">
+    <section ref={containerRef} className="w-full relative ">
       <div className="w-full h-[300vh] relative">
         <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
           <div className="absolute top-10 w-full text-center">
