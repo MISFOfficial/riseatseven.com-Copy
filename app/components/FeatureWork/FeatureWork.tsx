@@ -157,10 +157,7 @@ function FeatureWork() {
       </div>
 
       {/* Right Side: Scrolling Images */}
-      <div
-        ref={imagesRef}
-        className="col-span-12 grid pt-7 pb-14 lg:col-span-5 "
-      >
+      <div ref={imagesRef} className="col-span-12 grid pt-7  lg:col-span-5 ">
         <div className="mb-5 lg:hidden">
           <h2 className="inline-flex flex-wrap text-balance relative text-left justify-start text-white text-md/tight lg:text-lg/tight xl:text-xl/tight 4xl:text-2xl/none font-sans-primary font-medium tracking-tight">
             Featured Work

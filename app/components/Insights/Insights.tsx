@@ -16,6 +16,7 @@ import CommontButton from "../Navigation/CommontButton";
 import "swiper/css";
 import "swiper/css/pagination";
 import { insightsData } from "./Content";
+import InsightsMobile from "./InsightsMobile";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -100,7 +101,7 @@ const Insights: React.FC = () => {
         <div className="col-span-12">
           <div className="grid grid-cols-12 md:border-b md:border-grey-200 md:pb-8 gap-x-5 items-end">
             <div className="col-span-12 md:col-span-9">
-              <h2 className="flex flex-wrap items-center text-grey-900 text-6xl md:text-8xl lg:text-9xl font-sans-primary font-medium tracking-tight leading-[0.9]">
+              <h2 className="flex flex-wrap items-center text-grey-900 text-6xl md:text-6xl lg:text-9xl font-sans-primary font-medium tracking-tight leading-[0.9]">
                 {renderText("What's")}
                 <div
                   className="mx-4 rounded-[15%] overflow-hidden relative bg-black/5 js-image-wrapper"
@@ -131,115 +132,15 @@ const Insights: React.FC = () => {
         {/* Carousel Section */}
         <div className="col-span-12 -mx-4 md:-mx-7 lg:px-7">
           {/* ── Mobile: Looped Slider with Custom Pagination (hidden on md+) ── */}
-          <div className="block md:hidden">
-            <Swiper
-              onSwiper={(swiper) => (mobileSwiperRef.current = swiper)}
-              onSlideChange={(swiper) => setActiveMobileIndex(swiper.realIndex)}
-              spaceBetween={20}
-              slidesPerView={1.2}
-              loop={true}
-              className="px-4 overflow-visible!"
-            >
-              {[...insightsData, ...insightsData].map((item, index) => (
-                <SwiperSlide key={`${item.id}-mob-${index}`} className="py-2">
-                  <Link
-                    href={item.url}
-                    className="group flex flex-col gap-y-5 transition-transform duration-200 hover:-translate-y-2"
-                    style={{ cursor: "none" }}
-                    onMouseEnter={(e) => {
-                      window.dispatchEvent(
-                        new CustomEvent("component-cursor-button", {
-                          detail: { active: true, text: null },
-                        }),
-                      );
-                      const overlay =
-                        e.currentTarget.querySelector(".js-blur-overlay");
-                      gsap.to(overlay, {
-                        clipPath: "circle(150% at 50% 100%)",
-                        duration: 0.5,
-                        ease: "power2.inOut",
-                      });
-                    }}
-                    onMouseLeave={(e) => {
-                      window.dispatchEvent(
-                        new CustomEvent("component-cursor-button", {
-                          detail: { active: false, text: null },
-                        }),
-                      );
-                      const overlay =
-                        e.currentTarget.querySelector(".js-blur-overlay");
-                      gsap.to(overlay, {
-                        clipPath: "circle(0% at 50% 100%)",
-                        duration: 0.5,
-                        ease: "power2.inOut",
-                      });
-                    }}
-                  >
-                    <div className="relative aspect-square rounded-4xl lg:rounded-[3rem] overflow-hidden bg-white">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                      />
-
-                      {/* Circle blur overlay — GSAP animated from bottom center */}
-                      <div
-                        className="js-blur-overlay absolute inset-0 z-10 backdrop-blur-xl"
-                        style={{ clipPath: "circle(0% at 50% 100%)" }}
-                      />
-
-                      <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full text-[11px] md:text-xs font-medium text-white tracking-tight z-20">
-                        {item?.category}
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col gap-y-3 px-1">
-                      <div className="flex items-center gap-x-2">
-                        <div className="flex items-center gap-x-2 bg-white px-3 py-1 rounded-full border border-grey-200">
-                          <div className="w-5 h-5 rounded-full overflow-hidden relative -ml-1">
-                            <Image
-                              src={item.authorImg}
-                              alt={item.author}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                          <span className="text-[11px] md:text-xs font-medium text-grey-400">
-                            {item.author}
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-x-2 bg-white px-3 py-1 rounded-full border border-grey-200 text-[11px] md:text-xs font-medium text-grey-400">
-                          <span className="text-sm -mt-0.5">⏱</span>
-                          <span>{item.readTime}</span>
-                        </div>
-                      </div>
-
-                      <h3 className="text-xl md:text-2xl lg:text-3xl font-sans-primary font-medium tracking-tight text-grey-900 leading-[1.1]">
-                        {item.title}
-                      </h3>
-                    </div>
-                  </Link>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-
-            {/* Continuous line pagination bar — no breaks */}
-            <div className="mx-auto mt-8 " style={{ width: "calc(100%)" }}>
-              <div className="w-full h-[5px] bg-black/10 relative rounded-full overflow-hidden">
-                <div
-                  className="absolute top-0 left-0 h-full bg-grey-900 transition-all duration-300 rounded-full"
-                  style={{
-                    width: `${(((activeMobileIndex % totalMobile) + 1) / totalMobile) * 100}%`,
-                  }}
-                />
-              </div>
-            </div>
-          </div>
-
+          <InsightsMobile
+            insightsData={insightsData}
+            activeMobileIndex={activeMobileIndex}
+            setActiveMobileIndex={setActiveMobileIndex}
+            mobileSwiperRef={mobileSwiperRef}
+            totalMobile={totalMobile}
+          />
           {/* ── Desktop: Original Slider (hidden on mobile) ── */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block ">
             <Swiper
               modules={[Pagination]}
               spaceBetween={20}

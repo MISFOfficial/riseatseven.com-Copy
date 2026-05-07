@@ -67,47 +67,47 @@ const Legacy: React.FC = () => {
   return (
     <>
       {/* ── Mobile: Swiper slider (hidden on md+) ── */}
-      <div className="block md:hidden">
+      <div className="block lg:hidden">
         <LegacyMobileSlider />
       </div>
 
       {/* ── Desktop: GSAP card stack (hidden on mobile) ── */}
-      <section ref={containerRef} className="hidden md:block w-full relative ">
-      <div className="w-full h-[300vh] relative">
-        <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-          <div className="absolute top-10 w-full text-center">
-            <h2 className="text-grey-900 text-xl font-sans-primary font-semibold tracking-[-1.5px]">
-              {legacyData.title}
-            </h2>
-          </div>
+      <section ref={containerRef} className="hidden lg:block w-full relative ">
+        <div className="w-full h-[300vh] relative">
+          <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+            <div className="absolute top-10 w-full text-center">
+              <h2 className="text-grey-900 text-xl font-sans-primary font-semibold tracking-[-1.5px]">
+                {legacyData.title}
+              </h2>
+            </div>
 
-          <div className="relative w-full max-w-lg | xl:max-w-xl | 4xl:max-w-2xl h-[600px] flex items-center justify-center">
-            {legacyData.items.map((item, i) => (
-              <div
-                key={i}
-                className={`absolute inset-0 js-card flex flex-col items-center text-center rounded-3xl p-10 gap-y-6 ${item.bgColor} ${item.textColor} shadow-2xl`}
-                style={{ zIndex: legacyData.items.length - i }}
-              >
-                <div className="rounded-2xl overflow-hidden w-48 aspect-square relative shadow-lg">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
+            <div className="relative w-full max-w-lg | xl:max-w-xl | 4xl:max-w-2xl h-[600px] flex items-center justify-center">
+              {legacyData.items.map((item, i) => (
+                <div
+                  key={i}
+                  className={`absolute inset-0 js-card flex flex-col items-center text-center rounded-3xl p-10 gap-y-6 ${item.bgColor} ${item.textColor} shadow-2xl`}
+                  style={{ zIndex: legacyData.items.length - i }}
+                >
+                  <div className="rounded-2xl overflow-hidden w-48 aspect-square relative shadow-lg">
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-4xl lg:text-5xl font-sans-primary font-medium tracking-tight">
+                    {item.title}
+                  </h3>
+                  <div className="max-w-md mx-auto">
+                    <p className="text-sm lg:text-base leading-relaxed opacity-90">
+                      {item.content}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-4xl lg:text-5xl font-sans-primary font-medium tracking-tight">
-                  {item.title}
-                </h3>
-                <div className="max-w-md mx-auto">
-                  <p className="text-sm lg:text-base leading-relaxed opacity-90">
-                    {item.content}
-                  </p>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
-      </div>
       </section>
     </>
   );
