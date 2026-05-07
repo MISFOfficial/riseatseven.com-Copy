@@ -9,23 +9,23 @@ import Image from "next/image";
 interface WorkImageProps {
   work: WorkItem;
   isActive: boolean;
+  isHoveredByTitle?: boolean;
 }
 
-const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
+const WorkImage: React.FC<WorkImageProps> = ({
+  work,
+  isActive,
+  isHoveredByTitle,
+}) => {
   const containerRef = useRef<HTMLAnchorElement>(null);
   const maskRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
+  const [internalHover, setInternalHover] = useState(false);
+
+  const isHovered = internalHover || isHoveredByTitle;
 
   const { contextSafe } = useGSAP({ scope: containerRef });
 
-  const onMouseEnter = contextSafe(() => {
-    setIsHovered(true);
-    window.dispatchEvent(
-      new CustomEvent("component-cursor-button", {
-        detail: { active: true, text: null },
-      }),
-    );
-
+  const animateIn = contextSafe(() => {
     gsap.to(maskRef.current, {
       clipPath: "circle(150% at 50% 100%)",
       duration: 0.4,
@@ -33,20 +33,42 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
     });
   });
 
-  const onMouseLeave = contextSafe(() => {
-    setIsHovered(false);
-    window.dispatchEvent(
-      new CustomEvent("component-cursor-button", {
-        detail: { active: false, text: null },
-      }),
-    );
-
+  const animateOut = contextSafe(() => {
     gsap.to(maskRef.current, {
       clipPath: "circle(0% at 50% 100%)",
       duration: 0.3,
       ease: "power2.inOut",
     });
   });
+
+  useGSAP(
+    () => {
+      if (isHovered) {
+        animateIn();
+      } else {
+        animateOut();
+      }
+    },
+    { dependencies: [isHovered] },
+  );
+
+  const onMouseEnter = () => {
+    setInternalHover(true);
+    window.dispatchEvent(
+      new CustomEvent("component-cursor-button", {
+        detail: { active: true, text: null },
+      }),
+    );
+  };
+
+  const onMouseLeave = () => {
+    setInternalHover(false);
+    window.dispatchEvent(
+      new CustomEvent("component-cursor-button", {
+        detail: { active: false, text: null },
+      }),
+    );
+  };
 
   return (
     <a

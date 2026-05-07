@@ -16,6 +16,7 @@ function FeatureWork() {
   const titlesRef = useRef<HTMLDivElement>(null);
   const imagesRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useGSAP(
     () => {
@@ -127,6 +128,8 @@ function FeatureWork() {
                     title={work.title}
                     year={work.year}
                     isActive={activeIndex === index}
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
                     onClick={() => {
                       const images = Array.from(
                         imagesRef.current!.querySelectorAll(
@@ -169,6 +172,7 @@ function FeatureWork() {
             key={work.id}
             work={work}
             isActive={activeIndex === index}
+            isHoveredByTitle={hoveredIndex === index}
           />
         ))}
       </div>
