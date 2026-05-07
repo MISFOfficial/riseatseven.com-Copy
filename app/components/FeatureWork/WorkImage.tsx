@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { WorkItem } from "./Content";
@@ -12,52 +12,43 @@ interface WorkImageProps {
 
 const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
   const containerRef = useRef<HTMLAnchorElement>(null);
-  const maskRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const { contextSafe } = useGSAP({ scope: containerRef });
+  const onMouseEnter = () => {
+    setIsHovered(true);
+    window.dispatchEvent(
+      new CustomEvent("component-cursor-button", {
+        detail: { active: true, text: "View Case Study" },
+      }),
+    );
+  };
 
-  const onMouseMove = contextSafe((e: React.MouseEvent) => {
-    if (!maskRef.current || !containerRef.current) return;
-
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-
-    gsap.to(maskRef.current, {
-      clipPath: `circle(150px at ${x}px ${y}px)`,
-      duration: 0.3,
-      ease: "none",
-    });
-  });
-
-  const onMouseEnter = contextSafe(() => {
-    gsap.to(maskRef.current, {
-      opacity: 1,
-      duration: 0.3,
-    });
-  });
-
-  const onMouseLeave = contextSafe(() => {
-    gsap.to(maskRef.current, {
-      opacity: 0,
-      clipPath: `circle(0px at 50% 50%)`,
-      duration: 0.3,
-    });
-  });
+  const onMouseLeave = () => {
+    setIsHovered(false);
+    window.dispatchEvent(
+      new CustomEvent("component-cursor-button", {
+        detail: { active: false, text: null },
+      }),
+    );
+  };
 
   return (
     <a
       ref={containerRef}
       href={`/work/${work.id}`}
-      className={`grid group rounded-2xl overflow-hidden mb-5 | lg:rounded-2xl lg:mb-7 circle-mask-container ${
+      className={`grid group rounded-2xl overflow-hidden mb-5 | lg:rounded-2xl lg:mb-7 relative ${
         isActive ? "is-active" : ""
       }`}
-      onMouseMove={onMouseMove}
+      style={{ cursor: isHovered ? "none" : "auto" }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       {/* Layer 1: Image */}
-      <div className="col-start-1 row-start-1 transition | pointer-fine:group-hover:scale-105">
+      <div
+        className={`col-start-1 row-start-1 transition-all duration-700 ease-out ${
+          isHovered ? "scale-105 blur-md" : "scale-100 blur-0"
+        }`}
+      >
         <div
           className="relative overflow-hidden w-full"
           style={{ paddingTop: "75%" }}
@@ -66,7 +57,7 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
             <img
               src={work.image}
               alt={work.title}
-              className="absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-500"
+              className="absolute top-0 left-0 w-full h-full object-cover"
               loading="lazy"
             />
           </picture>
@@ -101,18 +92,31 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
         <div className="absolute w-full bottom-0 left-0 h-32 bg-linear-to-t from-black z-10 opacity-70"></div>
       </div>
 
-      {/* Layer 4: Circle Mask Overlay */}
+      {/* Layer 4: Full Hover Overlay */}
       <div
-        ref={maskRef}
-        className="col-start-1 row-start-1 grid-cols-12 flex flex-col items-start justify-between z-40 p-3 transition | lg:p-5 | circle-mask opacity-0 pointer-events-none"
+        className={`col-start-1 row-start-1 flex flex-col items-start justify-between z-40 p-3 transition-opacity duration-500 | lg:p-5 ${
+          isHovered ? "opacity-100" : "opacity-0"
+        }`}
         style={{
           backgroundColor: work.color,
           color: "#111212",
-          clipPath: "circle(0px at 50% 50%)",
         }}
       >
         <div className="inline-flex flex-wrap text-balance relative text-left justify-start text-current text-3xl/none | lg:text-4xl/none | xl:text-5xl/none | 3xl:text-6xl/none font-sans-primary font-medium tracking-tight js-heading">
           {work.description}
+        </div>
+
+        {/* Centered Explore Circle */}
+        <div className="absolute inset-0 flex items-center justify-center z-20">
+          <div
+            className={`w-20 h-20 md:w-24 md:h-24 bg-[#a2f2df] rounded-full flex items-center justify-center shadow-xl transition-all duration-500 ease-out ${
+              isHovered ? "scale-100 opacity-100" : "scale-50 opacity-0"
+            }`}
+          >
+            <span className="text-2xl md:text-3xl text-grey-900 font-medium">
+              ↗
+            </span>
+          </div>
         </div>
 
         <div className="w-full flex items-end justify-between">
