@@ -82,8 +82,12 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
       </div>
 
       {/* Layer 2: Service Tag */}
-      <div className="col-start-1 row-start-1 p-3 z-30 flex justify-end items-start | lg:items-end lg:p-5">
-        <div className="shrink-0 inline-flex items-center rounded-full tracking-tight font-medium leading-none text-white bg-white/20 backdrop-blur-sm text-sm gap-x-3 py-2.5 px-3.5 | lg:text-base">
+      <div className="col-start-1 row-start-1 p-3 z-50 flex justify-end items-start | lg:items-end lg:p-5 pointer-events-none">
+        <div
+          className={`shrink-0 inline-flex items-center rounded-full tracking-tight font-medium leading-none backdrop-blur-sm text-sm gap-x-3 py-2.5 px-3.5 | lg:text-base transition-colors duration-300 ${
+            isHovered ? "text-grey-900 bg-black/10" : "text-white bg-white/20"
+          }`}
+        >
           <i
             className="fa-regular fa-sharp fa-magnifying-glass"
             aria-hidden="true"
@@ -124,10 +128,11 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
         </div>
 
         <div className="w-full flex items-end justify-between">
-          <div className="w-8 | lg:w-24">
-            <img
+          <div className="relative w-20 h-10 lg:w-32 lg:h-14">
+            <Image
+              fill
               src={work.image}
-              className="w-full h-full object-contain grayscale invert brightness-0"
+              className="object-contain grayscale invert brightness-0"
               alt="Client Logo"
             />
           </div>
