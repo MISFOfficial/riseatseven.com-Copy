@@ -4,6 +4,7 @@ import React, { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { WorkItem } from "./Content";
+import Image from "next/image";
 
 interface WorkImageProps {
   work: WorkItem;
@@ -42,7 +43,7 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
 
     gsap.to(maskRef.current, {
       clipPath: "circle(0% at 50% 100%)",
-      duration: 0.5,
+      duration: 0.3,
       ease: "power2.inOut",
     });
   });
@@ -60,7 +61,7 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
     >
       {/* Layer 1: Image */}
       <div
-        className={`col-start-1 row-start-1 transition-all duration-700 ease-out ${
+        className={`col-start-1 row-start-1 transition-all duration-100 ease-out ${
           isHovered ? "scale-105 blur-md" : "scale-100 blur-0"
         }`}
       >
@@ -69,7 +70,8 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
           style={{ paddingTop: "75%" }}
         >
           <picture className="absolute top-0 left-0 w-full h-full">
-            <img
+            <Image
+              fill
               src={work.image}
               alt={work.title}
               className="absolute top-0 left-0 w-full h-full object-cover"
@@ -121,19 +123,6 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
           {work.description}
         </div>
 
-        {/* Centered Explore Circle */}
-        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
-          <div
-            className={`w-20 h-20 md:w-24 md:h-24 bg-[#a2f2df] rounded-full flex items-center justify-center shadow-xl transition-all duration-500 ease-out ${
-              isHovered ? "scale-100 opacity-100" : "scale-50 opacity-0"
-            }`}
-          >
-            <span className="text-2xl md:text-3xl text-grey-900 font-medium">
-              ↗
-            </span>
-          </div>
-        </div>
-
         <div className="w-full flex items-end justify-between">
           <div className="w-8 | lg:w-24">
             <img
@@ -141,18 +130,6 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
               className="w-full h-full object-contain grayscale invert brightness-0"
               alt="Client Logo"
             />
-          </div>
-
-          <div className="shrink-0 inline-flex items-center rounded-full tracking-tight font-medium leading-none text-current bg-white/15 backdrop-blur-sm text-sm gap-x-3 py-2.5 px-3.5 | lg:text-base">
-            <i
-              className="fa-regular fa-sharp fa-magnifying-glass"
-              aria-hidden="true"
-            ></i>
-            <div>{work.service}</div>
-            <i
-              className="fa-regular fa-sharp fa-chart-line-up"
-              aria-hidden="true"
-            ></i>
           </div>
         </div>
       </div>
