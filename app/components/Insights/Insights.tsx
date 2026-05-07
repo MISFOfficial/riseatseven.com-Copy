@@ -1,14 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const insightsData = [
   {
@@ -46,16 +51,90 @@ const insightsData = [
 ];
 
 const Insights: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const renderText = (text: string) => {
+    return text.split(" ").map((word, i) => (
+      <div
+        key={i}
+        className="inline-flex mr-2 | pointer-fine:mr-0 | js-word"
+        style={{ marginRight: "10px" }}
+      >
+        <div
+          style={{
+            position: "relative",
+            display: "inline-block",
+            overflow: "hidden",
+            paddingBottom: "0.1em",
+            marginBottom: "-0.1em",
+          }}
+        >
+          {word.split("").map((char, j) => (
+            <span key={j} className="inline-flex flex-col relative h-full">
+              <span className="block relative w-full h-full">{char}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    ));
+  };
+
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
+
+      const words = containerRef.current.querySelectorAll(".js-word span");
+      const imageWrapper =
+        containerRef.current.querySelector(".js-image-wrapper");
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+        },
+      });
+
+      tl.fromTo(
+        words,
+        { y: "110%" },
+        {
+          y: "0%",
+          duration: 0.4,
+          ease: "power3.out",
+          stagger: 0.02,
+        },
+      );
+
+      tl.fromTo(
+        imageWrapper,
+        { width: 0, opacity: 0 },
+        {
+          width: "1.1em",
+          opacity: 1,
+          duration: 1,
+          ease: "expo.out",
+        },
+      );
+    },
+    { scope: containerRef },
+  );
+
   return (
-    <section className="bg-grey-100 py-16 md:py-24 overflow-hidden">
+    <section
+      ref={containerRef}
+      className="bg-grey-100 py-16 md:py-24 overflow-hidden"
+    >
       <div className="grid grid-cols-12 gap-y-7 md:gap-y-12 px-4 md:px-7">
         {/* Header Section */}
         <div className="col-span-12">
           <div className="grid grid-cols-12 md:border-b md:border-grey-200 md:pb-8 gap-x-5 items-end">
             <div className="col-span-12 md:col-span-9">
               <h2 className="flex flex-wrap items-center text-grey-900 text-6xl md:text-8xl lg:text-9xl font-sans-primary font-medium tracking-tight leading-[0.9]">
-                <span>What&apos;s</span>
-                <div className="mx-4 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-[15%] overflow-hidden relative bg-black/5">
+                {renderText("What's")}
+                <div
+                  className="mx-4 rounded-[15%] overflow-hidden relative bg-black/5 js-image-wrapper"
+                  style={{ width: "1.1em", height: "0.85em" }}
+                >
                   <Image
                     src="/rise_files/3-copy.jpg"
                     alt="New"
@@ -63,7 +142,7 @@ const Insights: React.FC = () => {
                     className="object-cover"
                   />
                 </div>
-                <span>New</span>
+                {renderText("New")}
               </h2>
             </div>
 
