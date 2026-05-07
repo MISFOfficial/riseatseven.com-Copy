@@ -17,11 +17,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full antialiased">
-      <SmoothScroll>
-        <PageReveal />
-        <CustomCursor />
-        <body className="min-h-full flex flex-col">{children}</body>
-      </SmoothScroll>
+      <body className="min-h-full flex flex-col">
+        <SmoothScroll>
+          <PageReveal />
+          <CustomCursor />
+          {children}
+        </SmoothScroll>
+      </body>
     </html>
   );
 }

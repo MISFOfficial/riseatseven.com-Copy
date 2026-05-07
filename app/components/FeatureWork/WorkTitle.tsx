@@ -17,11 +17,7 @@ const WorkTitle: React.FC<WorkTitleProps> = ({
 }) => {
   return (
     <div
-      className={`relative transition-all duration-700 ease-out origin-left ${
-        isActive
-          ? "opacity-100 scale-100"
-          : "opacity-20 scale-100 hover:opacity-40"
-      }`}
+      className={`relative transition-all duration-700 ease-out origin-left `}
       onClick={onClick}
     >
       <a className="flex items-start gap-x-2 transition-transform duration-500 cursor-pointer">

@@ -58,7 +58,10 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
     >
       {/* Layer 1: Image */}
       <div className="col-start-1 row-start-1 transition | pointer-fine:group-hover:scale-105">
-        <div className="relative overflow-hidden w-full" style={{ paddingTop: "75%" }}>
+        <div
+          className="relative overflow-hidden w-full"
+          style={{ paddingTop: "75%" }}
+        >
           <picture className="absolute top-0 left-0 w-full h-full">
             <img
               src={work.image}
@@ -73,16 +76,24 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
       {/* Layer 2: Service Tag */}
       <div className="col-start-1 row-start-1 p-3 z-30 flex justify-end items-start | lg:items-end lg:p-5">
         <div className="shrink-0 inline-flex items-center rounded-full tracking-tight font-medium leading-none text-white bg-white/20 backdrop-blur-sm text-sm gap-x-3 py-2.5 px-3.5 | lg:text-base">
-          <i className="fa-regular fa-sharp fa-magnifying-glass" aria-hidden="true"></i>
+          <i
+            className="fa-regular fa-sharp fa-magnifying-glass"
+            aria-hidden="true"
+          ></i>
           <div>{work.service}</div>
-          <i className="fa-regular fa-sharp fa-chart-line-up" aria-hidden="true"></i>
+          <i
+            className="fa-regular fa-sharp fa-chart-line-up"
+            aria-hidden="true"
+          ></i>
         </div>
       </div>
 
       {/* Layer 3: Mobile Title */}
       <div className="col-start-1 row-start-1 p-3 z-30 relative flex justify-start items-end | lg:hidden lg:p-5">
         <div className="grid gap-y-1 relative z-20">
-          <div className="text-white text-xs font-medium mt-2">[{work.year}]</div>
+          <div className="text-white text-xs font-medium mt-2">
+            [{work.year}]
+          </div>
           <div className="inline-flex flex-wrap text-balance relative text-left justify-start text-white text-3xl/none | lg:text-5xl/none | xl:text-6xl/none | 3xl:text-7xl/0.9 font-sans-primary font-medium tracking-tight js-heading">
             {work.title}
           </div>
@@ -106,13 +117,23 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
 
         <div className="w-full flex items-end justify-between">
           <div className="w-8 | lg:w-24">
-            <img src={work.image} className="w-full h-full object-contain grayscale invert brightness-0" alt="Client Logo" />
+            <img
+              src={work.image}
+              className="w-full h-full object-contain grayscale invert brightness-0"
+              alt="Client Logo"
+            />
           </div>
 
           <div className="shrink-0 inline-flex items-center rounded-full tracking-tight font-medium leading-none text-current bg-white/15 backdrop-blur-sm text-sm gap-x-3 py-2.5 px-3.5 | lg:text-base">
-            <i className="fa-regular fa-sharp fa-magnifying-glass" aria-hidden="true"></i>
+            <i
+              className="fa-regular fa-sharp fa-magnifying-glass"
+              aria-hidden="true"
+            ></i>
             <div>{work.service}</div>
-            <i className="fa-regular fa-sharp fa-chart-line-up" aria-hidden="true"></i>
+            <i
+              className="fa-regular fa-sharp fa-chart-line-up"
+              aria-hidden="true"
+            ></i>
           </div>
         </div>
       </div>

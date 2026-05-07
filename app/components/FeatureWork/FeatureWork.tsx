@@ -26,35 +26,35 @@ function FeatureWork() {
 
       mm.add("(min-width: 1024px)", () => {
         // Calculate dimensions
-        const viewportHeight = window.innerHeight;
-        const imagesTotalHeight = imagesRef.current!.scrollHeight;
-        const titlesTotalHeight = titlesRef.current!.scrollHeight;
         const containerHeight = sectionRef.current!.clientHeight;
-
         const titles = Array.from(titlesRef.current!.children) as HTMLElement[];
         const firstTitle = titles[0];
         const lastTitle = titles[titles.length - 1];
+        // Titles will have a fixed small gap
+        gsap.set(titlesRef.current, { gap: "0rem" });
 
-        // Calculate centering offsets for first and last items
+        const imagesTotalHeight = imagesRef.current!.scrollHeight;
+        const titlesTotalHeight = titlesRef.current!.scrollHeight;
+
+        // Start together at the top
         const startY = 0;
+        // endY for titles such that the last title is centered at the end
         const endY =
-          containerHeight - lastTitle.offsetTop - lastTitle.clientHeight - 100; // Offset for bottom spacing
+          containerHeight / 2 -
+          lastTitle.offsetTop -
+          lastTitle.clientHeight / 2;
 
         // Pin the entire section
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "center center",
-            end: `+=${featuredWork.length * 50}%`,
-            scrub: 1,
+            end: `+=${featuredWork.length * 80}%`,
             pin: true,
-            pinSpacing: true,
-            anticipatePin: 1,
+            scrub: 1,
             onUpdate: (self) => {
-              const progressPerItem = 1 / (featuredWork.length - 1);
-              const index = Math.min(
-                Math.round(self.progress / progressPerItem),
-                featuredWork.length - 1,
+              const index = Math.round(
+                self.progress * (featuredWork.length - 1),
               );
               setActiveIndex(index);
             },
@@ -74,7 +74,7 @@ function FeatureWork() {
           0,
         );
 
-        // Sync titles scroll (moving from first item centered to last item centered)
+        // Sync titles scroll
         tl.to(
           titlesRef.current,
           {
@@ -103,7 +103,7 @@ function FeatureWork() {
       className="w-[96vw] h-[96vh] overflow-hidden bg-grey-900 rounded-3xl grid grid-cols-12 px-5 lg:pl-8 lg:pr-8 xl:pl-10 xl:pr-10 mx-auto"
     >
       {/* Left Side: Sticky Titles (Desktop) */}
-      <div className="relative col-span-12 items-start hidden lg:flex lg:flex-row lg:items-start lg:col-span-5 lg:h-full 4xl:col-span-5 sticky top-0">
+      <div className="relative col-span-12 lg:col-span-7 items-start hidden lg:flex lg:flex-row lg:items-start  lg:h-full   top-0">
         <div className="flex flex-col items-start relative z-10 h-full w-full">
           <div className="pt-16 lg:pt-24 pb-10">
             <h2 className="inline-flex flex-wrap text-balance relative text-left justify-start text-white text-md/tight lg:text-lg/tight xl:text-xl/tight 4xl:text-2xl/none font-sans-primary font-medium tracking-tight">
@@ -114,33 +114,43 @@ function FeatureWork() {
           <div className="relative flex-1 overflow-hidden hidden pr-5 | lg:inline-block w-full">
             {/* Gradient Overlays (Tailwind v4 syntax) */}
 
-            <div ref={titlesRef} className="grid  relative z-10 py-16 lg:py-24">
-              {featuredWork.map((work, index) => (
-                <WorkTitle
-                  key={work.id}
-                  title={work.title}
-                  year={work.year}
-                  isActive={activeIndex === index}
-                  onClick={() => {
-                    const images = Array.from(
-                      imagesRef.current!.querySelectorAll(
-                        ".circle-mask-container",
-                      ),
-                    );
-                    const targetImage = images[index];
-                    if (targetImage) {
-                      gsap.to(window, {
-                        scrollTo: {
-                          y: targetImage,
-                          offsetY: window.innerHeight / 4,
-                        },
-                        duration: 1.5,
-                        ease: "power4.inOut",
-                      });
-                    }
-                  }}
-                />
-              ))}
+            <div className=" overflow-hidden relative">
+              {/* Gradient Overlays for Fade Effect */}
+              <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-grey-900 to-transparent z-20 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-grey-900 to-transparent z-20 pointer-events-none" />
+
+              {/* title */}
+              <div
+                ref={titlesRef}
+                className="grid  relative z-10 my-16 lg:my-60 h-50 "
+              >
+                {featuredWork.map((work, index) => (
+                  <WorkTitle
+                    key={work.id}
+                    title={work.title}
+                    year={work.year}
+                    isActive={activeIndex === index}
+                    onClick={() => {
+                      const images = Array.from(
+                        imagesRef.current!.querySelectorAll(
+                          ".circle-mask-container",
+                        ),
+                      );
+                      const targetImage = images[index];
+                      if (targetImage) {
+                        gsap.to(window, {
+                          scrollTo: {
+                            y: targetImage,
+                            offsetY: window.innerHeight / 4,
+                          },
+                          duration: 1.5,
+                          ease: "power4.inOut",
+                        });
+                      }
+                    }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -149,7 +159,7 @@ function FeatureWork() {
       {/* Right Side: Scrolling Images */}
       <div
         ref={imagesRef}
-        className="col-span-12 grid pt-7 pb-14 lg:col-span-7 3xl:col-span-6 3xl:col-start-7 4xl:col-span-6 4xl:col-start-7"
+        className="col-span-12 grid pt-7 pb-14 lg:col-span-5 "
       >
         <div className="mb-5 lg:hidden">
           <h2 className="inline-flex flex-wrap text-balance relative text-left justify-start text-white text-md/tight lg:text-lg/tight xl:text-xl/tight 4xl:text-2xl/none font-sans-primary font-medium tracking-tight">
