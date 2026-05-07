@@ -13,7 +13,6 @@ export const insightsData = [
   {
     id: 1,
     title: "Ryan McNamara Is Now Rise at Seven's Global Operations Director",
-    category: "News",
     author: "Carrie Rose",
     authorImg: "/rise_files/3-copy.jpg",
     readTime: "2 mins",
