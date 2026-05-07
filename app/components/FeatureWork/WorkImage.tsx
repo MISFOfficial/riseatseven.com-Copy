@@ -12,25 +12,40 @@ interface WorkImageProps {
 
 const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
   const containerRef = useRef<HTMLAnchorElement>(null);
+  const maskRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  const onMouseEnter = () => {
+  const { contextSafe } = useGSAP({ scope: containerRef });
+
+  const onMouseEnter = contextSafe(() => {
     setIsHovered(true);
     window.dispatchEvent(
       new CustomEvent("component-cursor-button", {
         detail: { active: true, text: "View Case Study" },
       }),
     );
-  };
 
-  const onMouseLeave = () => {
+    gsap.to(maskRef.current, {
+      clipPath: "circle(150% at 50% 50%)",
+      duration: 0.7,
+      ease: "power2.inOut",
+    });
+  });
+
+  const onMouseLeave = contextSafe(() => {
     setIsHovered(false);
     window.dispatchEvent(
       new CustomEvent("component-cursor-button", {
         detail: { active: false, text: null },
       }),
     );
-  };
+
+    gsap.to(maskRef.current, {
+      clipPath: "circle(0% at 50% 50%)",
+      duration: 0.5,
+      ease: "power2.inOut",
+    });
+  });
 
   return (
     <a
@@ -94,12 +109,12 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
 
       {/* Layer 4: Full Hover Overlay */}
       <div
-        className={`col-start-1 row-start-1 flex flex-col items-start justify-between z-40 p-3 transition-opacity duration-500 | lg:p-5 ${
-          isHovered ? "opacity-100" : "opacity-0"
-        }`}
+        ref={maskRef}
+        className="col-start-1 row-start-1 flex flex-col items-start justify-between z-40 p-3 | lg:p-5"
         style={{
           backgroundColor: work.color,
           color: "#111212",
+          clipPath: "circle(0% at 50% 50%)",
         }}
       >
         <div className="inline-flex flex-wrap text-balance relative text-left justify-start text-current text-3xl/none | lg:text-4xl/none | xl:text-5xl/none | 3xl:text-6xl/none font-sans-primary font-medium tracking-tight js-heading">
@@ -107,7 +122,7 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
         </div>
 
         {/* Centered Explore Circle */}
-        <div className="absolute inset-0 flex items-center justify-center z-20">
+        <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
           <div
             className={`w-20 h-20 md:w-24 md:h-24 bg-[#a2f2df] rounded-full flex items-center justify-center shadow-xl transition-all duration-500 ease-out ${
               isHovered ? "scale-100 opacity-100" : "scale-50 opacity-0"
