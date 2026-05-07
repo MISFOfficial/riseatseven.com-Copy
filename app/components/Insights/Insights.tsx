@@ -105,7 +105,7 @@ const Insights: React.FC = () => {
               640: { slidesPerView: 2.2 },
               1024: { slidesPerView: 3 },
             }}
-            className="px-4 md:px-7 !overflow-visible"
+            className="px-4 md:px-7 overflow-visible!"
           >
             {insightsData.map((item) => (
               <SwiperSlide key={item.id} className="py-2">
@@ -113,7 +113,7 @@ const Insights: React.FC = () => {
                   href={item.url}
                   className="group flex flex-col gap-y-5 transition-transform duration-500 hover:-translate-y-2"
                 >
-                  <div className="relative aspect-square rounded-[2rem] lg:rounded-[3rem] overflow-hidden bg-white">
+                  <div className="relative aspect-square rounded-4xl lg:rounded-[3rem] overflow-hidden bg-white">
                     <Image
                       src={item.image}
                       alt={item.title}
@@ -168,8 +168,8 @@ const Insights: React.FC = () => {
 
           {/* Pagination Progress Bar */}
           <div className="mt-12 px-4 md:px-7">
-            <div className="js-insights-pagination swiper-pagination-progressbar !static !h-0.5 bg-grey-200 rounded-full overflow-hidden">
-              <span className="swiper-pagination-progressbar-fill !bg-grey-900 !transition-all !duration-500"></span>
+            <div className="js-insights-pagination swiper-pagination-progressbar static! h-0.5! bg-grey-200 rounded-full overflow-hidden">
+              <span className="swiper-pagination-progressbar-fill bg-grey-900! transition-all! duration-500!"></span>
             </div>
           </div>
         </div>

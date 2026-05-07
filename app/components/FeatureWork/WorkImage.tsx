@@ -98,7 +98,7 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
             {work.title}
           </div>
         </div>
-        <div className="absolute w-full bottom-0 left-0 h-32 bg-gradient-to-t from-black z-10 opacity-70"></div>
+        <div className="absolute w-full bottom-0 left-0 h-32 bg-linear-to-t from-black z-10 opacity-70"></div>
       </div>
 
       {/* Layer 4: Circle Mask Overlay */}

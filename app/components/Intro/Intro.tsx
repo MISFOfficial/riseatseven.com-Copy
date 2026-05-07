@@ -119,7 +119,7 @@ const Intro: React.FC = () => {
             </h2>
 
             {/* CTAs - Desktop */}
-            <div className="flex flex-wrap gap-4 hidden | md:flex">
+            <div className="hidden | md:flex flex-wrap gap-4">
               {introData.ctas.map((cta, i) =>
                 i === 0 ? (
                   <CommontButton
