@@ -84,8 +84,8 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
       {/* Layer 2: Service Tag */}
       <div className="col-start-1 row-start-1 p-3 z-50 flex justify-end items-start | lg:items-end lg:p-5 pointer-events-none">
         <div
-          className={`shrink-0 inline-flex items-center rounded-full tracking-tight font-medium leading-none backdrop-blur-sm text-sm gap-x-3 py-2.5 px-3.5 | lg:text-base transition-colors duration-300 ${
-            isHovered ? "text-grey-900 bg-black/10" : "text-white bg-white/20"
+          className={`shrink-0 inline-flex items-center rounded-full tracking-tight font-medium leading-none backdrop-blur-sm text-sm gap-x-3 py-2.5 px-3.5 | lg:text-base transition-colors duration-300  bg-white/10 ${
+            isHovered ? "text-grey-900 " : "text-white"
           }`}
         >
           <i
