@@ -16,7 +16,7 @@ const Intro: React.FC = () => {
 
   return (
     <section ref={containerRef} className="w-full py-12 | xl:py-24">
-      <div className="w-full px-4 | md:px-7">
+      <div className="w-full px-1 | md:px-7">
         <div className="w-full flex justify-between items-start | flex-col-reverse | md:flex-row | gap-x-3 | md:gap-x-5 gap-y-3 | md:gap-y-5">
           {/* CTAs - Hidden on Mobile, shown at bottom via flex-col-reverse */}
           <div className="flex flex-wrap gap-4 w-full | md:hidden">
