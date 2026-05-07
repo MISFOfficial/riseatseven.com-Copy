@@ -38,11 +38,8 @@ function FeatureWork() {
 
         // Start together at the top
         const startY = 0;
-        // endY for titles such that the last title is centered at the end
-        const endY =
-          containerHeight / 2 -
-          lastTitle.offsetTop -
-          lastTitle.clientHeight / 2;
+        // Increase the distance to travel to increase the speed
+        const endY = -(titlesTotalHeight - containerHeight / 8);
 
         // Pin the entire section
         const tl = gsap.timeline({
