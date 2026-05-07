@@ -9,6 +9,8 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import CommontButton from "../Navigation/CommontButton";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -147,25 +149,12 @@ const Insights: React.FC = () => {
             </div>
 
             <div className="hidden md:flex col-span-3 justify-end pb-2">
-              <Link
+              <CommontButton
                 href="/blog/"
-                className="group relative bg-white text-grey-900 px-7 py-3 rounded-full border border-transparent hover:rounded-xl transition-all duration-500 overflow-hidden shadow-sm"
-              >
-                <div className="flex flex-col relative h-5 overflow-hidden">
-                  <div className="flex items-center gap-x-2 transition-transform duration-500 group-hover:-translate-y-full">
-                    <span className="text-sm font-medium">
-                      Explore More Thoughts
-                    </span>
-                    <span className="text-xs mt-0.5 tracking-tight">↗</span>
-                  </div>
-                  <div className="absolute top-full flex items-center gap-x-2 transition-transform duration-500 group-hover:-translate-y-full">
-                    <span className="text-sm font-medium">
-                      Explore More Thoughts
-                    </span>
-                    <span className="text-xs mt-0.5 tracking-tight">↗</span>
-                  </div>
-                </div>
-              </Link>
+                label="Explore More Thoughts"
+                variant="white"
+                className="shadow-sm"
+              />
             </div>
           </div>
         </div>
@@ -255,12 +244,12 @@ const Insights: React.FC = () => {
 
         {/* Mobile View Explore More */}
         <div className="col-span-12 md:hidden px-4">
-          <Link
+          <CommontButton
             href="/blog/"
-            className="w-full bg-white text-grey-900 px-6 py-4 rounded-full border border-grey-200 flex justify-center items-center gap-x-2 text-sm font-medium"
-          >
-            Explore More Thoughts ↗
-          </Link>
+            label="Explore More Thoughts"
+            variant="white"
+            className="w-full shadow-sm"
+          />
         </div>
       </div>
     </section>
