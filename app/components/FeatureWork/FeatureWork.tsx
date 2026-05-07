@@ -97,7 +97,7 @@ function FeatureWork() {
     <div
       ref={sectionRef}
       id="featured-work-section"
-      className="w-[96vw] h-[96vh] overflow-hidden bg-grey-900 rounded-3xl grid grid-cols-12 px-5 lg:pl-8 lg:pr-8 xl:pl-10 xl:pr-10 mx-auto"
+      className="w-[96vw] h-[94vh] overflow-hidden bg-grey-900 rounded-3xl grid grid-cols-12 px-5 lg:pl-8 lg:pr-8 xl:pl-10 xl:pr-10 mx-auto"
     >
       {/* Left Side: Sticky Titles (Desktop) */}
       <div className="relative col-span-12 lg:col-span-7 items-start hidden lg:flex lg:flex-row lg:items-start  lg:h-full   top-0">
@@ -111,15 +111,15 @@ function FeatureWork() {
           <div className="relative flex-1 overflow-hidden hidden pr-5 | lg:inline-block w-full">
             {/* Gradient Overlays (Tailwind v4 syntax) */}
 
-            <div className=" overflow-hidden relative">
+            <div className=" overflow-hidden relative  mt-10">
               {/* Gradient Overlays for Fade Effect */}
-              <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-grey-900 to-transparent z-20 pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-grey-900 to-transparent z-20 pointer-events-none" />
+              <div className="absolute top-0 left-0 w-full h-40 bg-linear-to-b from-grey-900 to-transparent z-20 pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-full h-60 bg-linear-to-t from-grey-900 to-transparent z-20 pointer-events-none" />
 
               {/* title */}
               <div
                 ref={titlesRef}
-                className="grid  relative z-10 my-16 lg:my-60 h-50 "
+                className="grid  relative z-10 my-16 lg:my-60 h-30 "
               >
                 {featuredWork.map((work, index) => (
                   <WorkTitle
