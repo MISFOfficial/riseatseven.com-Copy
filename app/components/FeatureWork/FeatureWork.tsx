@@ -36,7 +36,6 @@ function FeatureWork() {
         const lastTitle = titles[titles.length - 1];
 
         // Calculate centering offsets for first and last items
-        // Start with the first title at the top (with some padding from the container's pt-24)
         const startY = 0;
         const endY =
           containerHeight -
@@ -108,15 +107,20 @@ function FeatureWork() {
     >
       {/* Left Side: Sticky Titles (Desktop) */}
       <div className="relative col-span-12 items-start hidden lg:flex lg:flex-row lg:items-start lg:col-span-5 lg:h-full 4xl:col-span-5 sticky top-0">
-        <div className="flex flex-col items-start relative z-10 h-full pt-16 lg:pt-24 lg:pb-32 lg:gap-y-20 w-full">
-          <h2 className="inline-flex flex-wrap text-balance relative text-left justify-start text-white text-md/tight lg:text-lg/tight xl:text-xl/tight 4xl:text-2xl/none font-sans-primary font-medium tracking-tight">
-            Featured Work
-          </h2>
+        <div className="flex flex-col items-start relative z-10 h-full w-full">
+          <div className="pt-16 lg:pt-24 pb-10">
+            <h2 className="inline-flex flex-wrap text-balance relative text-left justify-start text-white text-md/tight lg:text-lg/tight xl:text-xl/tight 4xl:text-2xl/none font-sans-primary font-medium tracking-tight">
+              Featured Work
+            </h2>
+          </div>
 
           <div className="relative flex-1 overflow-hidden hidden pr-5 | lg:inline-block w-full">
             {/* Gradient Overlays (Tailwind v4 syntax) */}
 
-            <div ref={titlesRef} className="grid gap-y-6 relative z-10 py-16 lg:py-24">
+            <div
+              ref={titlesRef}
+              className="grid gap-y-6 relative z-10 py-16 lg:py-24"
+            >
               {featuredWork.map((work, index) => (
                 <WorkTitle
                   key={work.id}

@@ -17,7 +17,7 @@ const WorkTitle: React.FC<WorkTitleProps> = ({
 }) => {
   return (
     <div
-      className={`relative transition-all duration-700 ease-out ${
+      className={`relative transition-all duration-700 ease-out origin-left ${
         isActive
           ? "opacity-100 scale-100"
           : "opacity-20 scale-95 hover:opacity-40"
