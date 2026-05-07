@@ -22,7 +22,7 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
     setIsHovered(true);
     window.dispatchEvent(
       new CustomEvent("component-cursor-button", {
-        detail: { active: true, text: "View Case Study" },
+        detail: { active: true, text: null },
       }),
     );
 

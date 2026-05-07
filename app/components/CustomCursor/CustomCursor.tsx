@@ -69,7 +69,9 @@ const CustomCursor = () => {
   return (
     <div
       ref={cursorRef}
-      className="fixed top-0 left-0 pointer-events-none z-9999 flex items-center justify-center rounded-full bg-mint text-grey-900 font-semibold text-center px-7 py-3 scale-0 opacity-0 "
+      className={`fixed top-0 left-0 pointer-events-none z-9999 flex items-center justify-center rounded-full bg-mint text-grey-900 font-semibold text-center scale-0 opacity-0 ${
+        cursorState.text ? "px-7 py-3" : "w-16 h-16 lg:w-30 lg:h-30"
+      }`}
       style={{
         transform: "translate(-50%, -50%)",
       }}
@@ -77,12 +79,12 @@ const CustomCursor = () => {
       <span className="whitespace-nowrap flex items-center gap-2 text-sm lg:text-md">
         {cursorState.text}
         <svg
-          width="15"
-          height="15"
+          width={cursorState.text ? "15" : "30"}
+          height={cursorState.text ? "15" : "30"}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
-          strokeWidth="2"
+          strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         >
