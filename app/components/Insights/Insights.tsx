@@ -147,19 +147,33 @@ const Insights: React.FC = () => {
                   href={item.url}
                   className="group flex flex-col gap-y-5 transition-transform duration-200 hover:-translate-y-2"
                   style={{ cursor: "none" }}
-                  onMouseEnter={() => {
+                  onMouseEnter={(e) => {
                     window.dispatchEvent(
                       new CustomEvent("component-cursor-button", {
                         detail: { active: true, text: null },
                       }),
                     );
+                    const overlay =
+                      e.currentTarget.querySelector(".js-blur-overlay");
+                    gsap.to(overlay, {
+                      clipPath: "circle(150% at 50% 100%)",
+                      duration: 0.5,
+                      ease: "power2.inOut",
+                    });
                   }}
-                  onMouseLeave={() => {
+                  onMouseLeave={(e) => {
                     window.dispatchEvent(
                       new CustomEvent("component-cursor-button", {
                         detail: { active: false, text: null },
                       }),
                     );
+                    const overlay =
+                      e.currentTarget.querySelector(".js-blur-overlay");
+                    gsap.to(overlay, {
+                      clipPath: "circle(0% at 50% 100%)",
+                      duration: 0.5,
+                      ease: "power2.inOut",
+                    });
                   }}
                 >
                   <div className="relative aspect-square rounded-4xl lg:rounded-[3rem] overflow-hidden bg-white">
@@ -170,8 +184,11 @@ const Insights: React.FC = () => {
                       className="object-cover"
                     />
 
-                    {/* Circle blur overlay — expands from bottom center */}
-                    <div className="absolute inset-0 z-10 backdrop-blur-md [clip-path:circle(0%_at_50%_100%)] group-hover:[clip-path:circle(150%_at_50%_100%)] transition-[clip-path] duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]" />
+                    {/* Circle blur overlay — GSAP animated from bottom center */}
+                    <div
+                      className="js-blur-overlay absolute inset-0 z-10 backdrop-blur-xl"
+                      style={{ clipPath: "circle(0% at 50% 100%)" }}
+                    />
 
                     <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full text-[11px] md:text-xs font-medium text-white tracking-tight z-20">
                       {item?.category}
