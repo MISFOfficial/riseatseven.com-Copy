@@ -14,43 +14,9 @@ import CommontButton from "../Navigation/CommontButton";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import { insightsData } from "./Content";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const insightsData = [
-  {
-    id: 2,
-    title:
-      "Rise at Seven Appointed by Coneys to Drive Demand and Retail Growth for them in the Chocolate Confectionery Category",
-    category: "Food/Hospitality/Drink",
-    author: "Ray Saddiq",
-    authorImg: "/rise_files/0B5A6875.jpg",
-    readTime: "2 mins",
-    image: "/rise_files/0B5A6875.jpg",
-    url: "#",
-  },
-  {
-    id: 1,
-    title: "Ryan McNamara Is Now Rise at Seven's Global Operations Director",
-    category: "News",
-    author: "Carrie Rose",
-    authorImg: "/rise_files/3-copy.jpg",
-    readTime: "2 mins",
-    image: "/rise_files/0B5A7827.jpg",
-    url: "#",
-  },
-  {
-    id: 3,
-    title:
-      "Rise at Seven Appointed by Langtins to drive demand and retail growth for Noomz",
-    category: "Food/Hospitality/Drink",
-    author: "Carrie Rose",
-    authorImg: "/rise_files/3-copy.jpg",
-    readTime: "2 mins",
-    image: "/rise_files/Noomz1-4.jpg",
-    url: "#",
-  },
-];
 
 const Insights: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -179,7 +145,7 @@ const Insights: React.FC = () => {
               <SwiperSlide key={item.id} className="py-2">
                 <Link
                   href={item.url}
-                  className="group flex flex-col gap-y-5 transition-transform duration-500 hover:-translate-y-2"
+                  className="group flex flex-col gap-y-5 transition-transform duration-200 hover:-translate-y-2"
                   style={{ cursor: "none" }}
                   onMouseEnter={() => {
                     window.dispatchEvent(
@@ -201,20 +167,14 @@ const Insights: React.FC = () => {
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-cover transition-all duration-1000 ease-out group-hover:blur-md"
+                      className="object-cover"
                     />
 
-                    {/* Centered Explore Circle */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
-                      <div className="w-20 h-20 md:w-24 md:h-24 bg-[#a2f2df] rounded-full flex items-center justify-center shadow-xl scale-50 group-hover:scale-100 transition-transform duration-500 ease-out">
-                        <span className="text-2xl md:text-3xl text-grey-900 font-medium">
-                          ↗
-                        </span>
-                      </div>
-                    </div>
+                    {/* Circle blur overlay — expands from bottom center */}
+                    <div className="absolute inset-0 z-10 backdrop-blur-md [clip-path:circle(0%_at_50%_100%)] group-hover:[clip-path:circle(150%_at_50%_100%)] transition-[clip-path] duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]" />
 
-                    <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full text-[11px] md:text-xs font-medium text-white tracking-tight z-10">
-                      {item.category}
+                    <div className="absolute top-4 left-4 bg-white/20 backdrop-blur-md px-3 py-1.5 rounded-full text-[11px] md:text-xs font-medium text-white tracking-tight z-20">
+                      {item?.category}
                     </div>
                   </div>
 
