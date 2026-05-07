@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import { legacyData } from "./LegacyContent";
+import LegacyMobileSlider from "./LegacyMobileSlider";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -64,7 +65,14 @@ const Legacy: React.FC = () => {
   );
 
   return (
-    <section ref={containerRef} className="w-full relative ">
+    <>
+      {/* ── Mobile: Swiper slider (hidden on md+) ── */}
+      <div className="block md:hidden">
+        <LegacyMobileSlider />
+      </div>
+
+      {/* ── Desktop: GSAP card stack (hidden on mobile) ── */}
+      <section ref={containerRef} className="hidden md:block w-full relative ">
       <div className="w-full h-[300vh] relative">
         <div className="sticky top-0 h-screen w-full flex flex-col items-center justify-center overflow-hidden">
           <div className="absolute top-10 w-full text-center">
@@ -100,7 +108,8 @@ const Legacy: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+    </>
   );
 };
 
