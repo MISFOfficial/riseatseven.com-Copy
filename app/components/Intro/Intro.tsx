@@ -79,7 +79,7 @@ const Intro: React.FC = () => {
           </div>
 
           {/* Description */}
-          <div className="w-full mb-1 | md:mt-2 md:mb-0 max-w-sm | xl:max-w-xl | 3xl:max-w-2xl | 4xl:max-w-3xl">
+          <div className="w-full mb-1 | md:mt-2 md:mb-0 max-w-xs | xl:max-w-xl | 3xl:max-w-2xl | 4xl:max-w-3xl">
             <div className="inline-flex flex-wrap text-balance relative text-left justify-start text-grey-900 text-lg/tight | lg:text-lg/tight | xl:text-2xl/none | 4xl:text-3xl/none font-sans-primary font-medium tracking-tight overflow-hidden">
               {introData.description.split(" ").map((word, i) => (
                 <span key={i} className="inline-block mr-1.5 js-word">
