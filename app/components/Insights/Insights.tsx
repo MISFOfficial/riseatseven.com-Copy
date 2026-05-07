@@ -135,10 +135,10 @@ const Insights: React.FC = () => {
                 {renderText("What's")}
                 <div
                   className="mx-4 rounded-[15%] overflow-hidden relative bg-black/5 js-image-wrapper"
-                  style={{ width: "1.1em", height: "0.85em" }}
+                  style={{ width: "0.9em", height: "0.85em" }}
                 >
                   <Image
-                    src="/rise_files/3-copy.jpg"
+                    src="/rise_files/0B5A6875.jpg"
                     alt="New"
                     fill
                     className="object-cover"
