@@ -23,13 +23,14 @@ const LegacyMobileSlider: React.FC = () => {
       {/* Swiper */}
       <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
-        onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+        onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         slidesPerView={1.08}
         centeredSlides={true}
+        loop={true}
         spaceBetween={14}
         className="w-full"
       >
-        {legacyData.items.map((item, i) => (
+        {[...legacyData.items, ...legacyData.items].map((item, i) => (
           <SwiperSlide key={i} className="h-auto!">
             <div
               className={`flex flex-col rounded-2xl p-8 pb-12 ${item.bgColor} ${item.textColor} h-full`}
@@ -59,11 +60,11 @@ const LegacyMobileSlider: React.FC = () => {
 
       {/* Continuous line pagination bar — no breaks */}
       <div className="mx-auto mt-8" style={{ width: "calc(100% / 1.08)" }}>
-        <div className="w-full h-[3px] bg-black/10 relative rounded-full overflow-hidden">
+        <div className="w-full h-[5px] bg-black/10 relative rounded-full overflow-hidden">
           <div
             className="absolute top-0 left-0 h-full bg-grey-900 transition-all duration-300 rounded-full"
             style={{
-              width: `${((activeIndex + 1) / total) * 100}%`,
+              width: `${(((activeIndex % total) + 1) / total) * 100}%`,
             }}
           />
         </div>
