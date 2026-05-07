@@ -24,9 +24,9 @@ const insightsData = [
       "Rise at Seven Appointed by Coneys to Drive Demand and Retail Growth for them in the Chocolate Confectionery Category",
     category: "Food/Hospitality/Drink",
     author: "Ray Saddiq",
-    authorImg: "/rise_files/Noomz1-4.jpg",
+    authorImg: "/rise_files/0B5A6875.jpg",
     readTime: "2 mins",
-    image: "/rise_files/Noomz1-4.jpg",
+    image: "/rise_files/0B5A6875.jpg",
     url: "#",
   },
   {
@@ -36,7 +36,7 @@ const insightsData = [
     author: "Carrie Rose",
     authorImg: "/rise_files/3-copy.jpg",
     readTime: "2 mins",
-    image: "/rise_files/3-copy.jpg",
+    image: "/rise_files/0B5A7827.jpg",
     url: "#",
   },
   {
@@ -180,13 +180,28 @@ const Insights: React.FC = () => {
                 <Link
                   href={item.url}
                   className="group flex flex-col gap-y-5 transition-transform duration-500 hover:-translate-y-2"
+                  style={{ cursor: "none" }}
+                  onMouseEnter={() => {
+                    window.dispatchEvent(
+                      new CustomEvent("component-cursor-button", {
+                        detail: { active: true, text: null },
+                      }),
+                    );
+                  }}
+                  onMouseLeave={() => {
+                    window.dispatchEvent(
+                      new CustomEvent("component-cursor-button", {
+                        detail: { active: false, text: null },
+                      }),
+                    );
+                  }}
                 >
                   <div className="relative aspect-square rounded-4xl lg:rounded-[3rem] overflow-hidden bg-white">
                     <Image
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-cover transition-all duration-1000 ease-out group-hover:scale-105 group-hover:blur-md"
+                      className="object-cover transition-all duration-1000 ease-out group-hover:blur-md"
                     />
 
                     {/* Centered Explore Circle */}
