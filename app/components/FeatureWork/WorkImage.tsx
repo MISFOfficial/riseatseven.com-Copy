@@ -26,8 +26,8 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
     );
 
     gsap.to(maskRef.current, {
-      clipPath: "circle(150% at 50% 50%)",
-      duration: 0.7,
+      clipPath: "circle(150% at 50% 100%)",
+      duration: 0.4,
       ease: "power2.inOut",
     });
   });
@@ -41,7 +41,7 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
     );
 
     gsap.to(maskRef.current, {
-      clipPath: "circle(0% at 50% 50%)",
+      clipPath: "circle(0% at 50% 100%)",
       duration: 0.5,
       ease: "power2.inOut",
     });
@@ -114,7 +114,7 @@ const WorkImage: React.FC<WorkImageProps> = ({ work, isActive }) => {
         style={{
           backgroundColor: work.color,
           color: "#111212",
-          clipPath: "circle(0% at 50% 50%)",
+          clipPath: "circle(0% at 50% 100%)",
         }}
       >
         <div className="inline-flex flex-wrap text-balance relative text-left justify-start text-current text-3xl/none | lg:text-4xl/none | xl:text-5xl/none | 3xl:text-6xl/none font-sans-primary font-medium tracking-tight js-heading">
