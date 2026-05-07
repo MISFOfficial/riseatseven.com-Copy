@@ -30,12 +30,12 @@ const LegacyMobileSlider: React.FC = () => {
         className="w-full"
       >
         {legacyData.items.map((item, i) => (
-          <SwiperSlide key={i}>
+          <SwiperSlide key={i} className="h-auto!">
             <div
-              className={`flex flex-col rounded-3xl overflow-hidden ${item.bgColor} ${item.textColor} shadow-xl`}
+              className={`flex flex-col rounded-2xl p-8 pb-12 ${item.bgColor} ${item.textColor} h-full`}
             >
               {/* Wide rectangular image — matches screenshots */}
-              <div className="w-full aspect-4/3 overflow-hidden">
+              <div className="w-full aspect-4/3  rounded-2xl overflow-hidden shrink-0">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -44,7 +44,7 @@ const LegacyMobileSlider: React.FC = () => {
               </div>
 
               {/* Text content */}
-              <div className="flex flex-col items-center text-center px-6 py-8 gap-y-4">
+              <div className="flex flex-col items-center text-center mt-8 gap-y-4 px-2 grow">
                 <h3 className="text-4xl font-sans-primary font-medium tracking-tight">
                   {item.title}
                 </h3>
@@ -58,10 +58,7 @@ const LegacyMobileSlider: React.FC = () => {
       </Swiper>
 
       {/* Continuous line pagination bar — no breaks */}
-      <div 
-        className="mx-auto mt-8" 
-        style={{ width: 'calc(100% / 1.08)' }}
-      >
+      <div className="mx-auto mt-8" style={{ width: "calc(100% / 1.08)" }}>
         <div className="w-full h-[3px] bg-black/10 relative rounded-full overflow-hidden">
           <div
             className="absolute top-0 left-0 h-full bg-grey-900 transition-all duration-300 rounded-full"
