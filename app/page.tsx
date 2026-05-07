@@ -3,6 +3,7 @@ import Navigation from "./components/Navigation/Navigation";
 import TopAd from "./components/TopAd/TopAd";
 import Footer from "./components/Footer/Footer";
 import FeatureWork from "./components/FeatureWork/FeatureWork";
+import CommontButton from "./components/Navigation/CommontButton";
 import Hero from "./components/Hero/Hero";
 import LogoSlider from "./components/LogoSlider/LogoSlider";
 import Intro from "./components/Intro/Intro";
@@ -20,12 +21,20 @@ function page() {
         <Navigation />
       </header>
 
-      <main className="grow px-[8px]">
+      <main className="grow px-[8px] flex flex-col gap-12 mg:gap-24">
         <Hero />
         <LogoSlider />
         <Intro />
         <div className="">
           <FeatureWork />
+          <div className="flex justify-center mt-3 ">
+            <CommontButton
+              href="/our-work"
+              label="Explore our work"
+              variant="white"
+              className="w-full lg:w-fit"
+            />
+          </div>
         </div>
         <Services />
         <Marquee />

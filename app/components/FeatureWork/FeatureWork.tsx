@@ -98,7 +98,7 @@ function FeatureWork() {
     <div
       ref={sectionRef}
       id="featured-work-section"
-      className="w-[96vw] h-[94vh] overflow-hidden bg-grey-900 rounded-3xl grid grid-cols-12 px-5 lg:pl-8 lg:pr-8 xl:pl-10 xl:pr-10 mx-auto"
+      className="w-[96vw] lg:h-[94vh] lg:overflow-hidden bg-grey-900 rounded-3xl grid grid-cols-12 px-5 lg:pl-8 lg:pr-8 xl:pl-10 xl:pr-10 mx-auto"
     >
       {/* Left Side: Sticky Titles (Desktop) */}
       <div className="relative col-span-12 lg:col-span-7 items-start hidden lg:flex lg:flex-row lg:items-start  lg:h-full   top-0">
