@@ -122,7 +122,7 @@ function Navigation() {
           {/* Desktop Links */}
           <div
             ref={linksContainerRef}
-            className="relative  hidden lg:inline-flex items-center"
+            className="relative  hidden lg:inline-flex items-center "
             onMouseLeave={handleMouseLeave}
           >
             {navLinks.map((item) => (
@@ -194,7 +194,7 @@ function Navigation() {
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             onMouseLeave={clearInteractions}
-            className="fixed top-[70px] left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-40 bg-white rounded-[32px] shadow-2xl overflow-hidden p-8 lg:p-10"
+            className="fixed top-30 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-40 bg-white rounded-[32px] shadow-2xl overflow-hidden p-8 lg:p-10"
           >
             {(() => {
               const activeLink = navLinks.find((l) => l.id === megaMenu);
