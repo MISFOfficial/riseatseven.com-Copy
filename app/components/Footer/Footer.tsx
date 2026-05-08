@@ -4,7 +4,13 @@ import { footerContent } from "./Content";
 import Logo from "./Logo";
 import FooterLink from "./FooterLink";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { FaFacebookF, FaLinkedinIn, FaYoutube, FaTiktok, FaInstagram } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaYoutube,
+  FaTiktok,
+  FaInstagram,
+} from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 
 export default function Footer() {
@@ -69,10 +75,14 @@ export default function Footer() {
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-x-2.5 rounded-xl text-xs px-2 py-2 transition-all bg-white text-grey-900 hover:rounded-sm group"
+                      className="inline-flex items-center gap-x-2.5 rounded-xl text-xs px-2 py-0.5 transition-all bg-white text-grey-900 hover:rounded-sm group"
                     >
                       <div className="inline-flex items-center">
-                        {Icon ? <Icon size={14} /> : <span className="font-bold">{social.icon}</span>}
+                        {Icon ? (
+                          <Icon size={14} />
+                        ) : (
+                          <span className="font-bold">{social.icon}</span>
+                        )}
                       </div>
                       <span className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                         ↗
