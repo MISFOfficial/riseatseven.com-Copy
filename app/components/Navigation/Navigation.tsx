@@ -255,9 +255,10 @@ function Navigation() {
         {megaMenu && (
           <motion.div
             layout
-            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.95 }}
+            key="shared-mega-menu-bg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
             transition={{
               opacity: { duration: 0.2 },
               layout: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
@@ -265,7 +266,7 @@ function Navigation() {
             onMouseLeave={clearInteractions}
             className="fixed top-30 left-1/2 -translate-x-1/2 w-fit min-w-[500px] z-40 bg-white rounded-[32px] shadow-2xl overflow-hidden p-8 lg:p-10"
           >
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="popLayout" initial={false}>
               {(() => {
                 const activeLink = navLinks.find((l) => l.id === megaMenu);
                 if (!activeLink) return null;
@@ -273,10 +274,10 @@ function Navigation() {
                 return (
                   <motion.div
                     key={megaMenu}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
                     className="flex flex-col lg:flex-row gap-12"
                   >
                     {/* Left Side: Links */}
@@ -298,7 +299,7 @@ function Navigation() {
                     </div>
 
                     {/* Right Side: Image Card */}
-                    <div className="w-[300px] lg:w-[380px] shrink-0 relative group cursor-pointer overflow-hidden rounded-2xl aspect-[4/3]">
+                    <div className="w-[300px] lg:w-[380px] shrink-0 relative group cursor-pointer overflow-hidden rounded-2xl aspect-4/3">
                       {activeLink.image && (
                         <img
                           src={activeLink.image}
