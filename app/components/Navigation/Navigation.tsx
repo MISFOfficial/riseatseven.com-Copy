@@ -328,33 +328,36 @@ function Navigation() {
       <AnimatePresence>
         {megaMenu && (
           <motion.div
+            key="interaction-overlay-container"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0 }}
+            transition={{ duration: 0.3 }}
             className="fixed inset-0 z-30 pointer-events-auto overflow-hidden"
             onMouseEnter={clearInteractions}
           >
-            {(() => {
-              const activeLink = navLinks.find((l) => l.id === megaMenu);
-              if (!activeLink?.image) return null;
-              return (
-                <motion.div
-                  key={activeLink.image}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0 }}
-                  className="absolute inset-0"
-                >
-                  <img
-                    src={activeLink.image}
-                    alt=""
-                    className="w-full h-full object-cover blur-[80px] opacity-40 brightness-50"
-                  />
-                </motion.div>
-              );
-            })()}
+            <AnimatePresence>
+              {(() => {
+                const activeLink = navLinks.find((l) => l.id === megaMenu);
+                if (!activeLink?.image) return null;
+                return (
+                  <motion.div
+                    key={activeLink.image}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, position: "absolute" }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute inset-0"
+                  >
+                    <img
+                      src={activeLink.image}
+                      alt=""
+                      className="w-full h-full object-cover blur-[80px] opacity-40 brightness-50"
+                    />
+                  </motion.div>
+                );
+              })()}
+            </AnimatePresence>
             <div className="absolute inset-0 bg-black/10 backdrop-blur-[15px]" />
           </motion.div>
         )}
