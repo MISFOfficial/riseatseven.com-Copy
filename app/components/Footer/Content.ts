@@ -9,7 +9,7 @@ export const footerContent = {
     { name: "LinkedIn", href: "#", icon: "in" },
     { name: "YouTube", href: "#", icon: "yt" },
     { name: "TikTok", href: "#", icon: "tt" },
-    { name: "Instagram", href: "#", icon: "ig" },
+    { name: "Instagram", href: "#", icon: "Ins" },
   ],
   columns: [
     {

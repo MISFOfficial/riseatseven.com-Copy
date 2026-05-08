@@ -42,7 +42,9 @@ function page() {
         <Insights />
         <PreFooter />
       </main>
-      <Footer />
+      <div className="px-[8px] ">
+        <Footer />
+      </div>
     </div>
   );
 }

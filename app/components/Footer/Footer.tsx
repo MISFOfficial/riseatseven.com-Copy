@@ -1,19 +1,28 @@
 "use client";
-import React from "react";
+import React, { useRef } from "react";
 import { footerContent } from "./Content";
 import Logo from "./Logo";
 import FooterLink from "./FooterLink";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Footer() {
   const { newsletter, socials, columns, bottom } = footerContent;
+  const footerRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: footerRef,
+    offset: ["start 95%", "start 40%"],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section className="w-full py-0 " id="footer">
+    <section className="w-full py-0 " id="footer" ref={footerRef}>
       <div className="w-full px-0">
         <div className=" grid bg-grey-900 rounded-3xl relative js-footer">
-          <div
+          <motion.div
             className="col-start-1 row-start-1 grid grid-cols-12 pt-14 pb-6 relative z-20 lg:py-10 px-4 md:px-7 gap-x-3 md:gap-x-5 gap-y-3 md:gap-y-7 js-footer-content"
-            style={{ opacity: 1 }}
+            style={{ opacity }}
           >
             {/* Newsletter Section */}
             <div className="flex flex-col items-start justify-start col-span-12 mb-10 lg:mb-0 lg:col-span-4 gap-y-3 md:gap-y-5">
@@ -113,7 +122,7 @@ export default function Footer() {
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
