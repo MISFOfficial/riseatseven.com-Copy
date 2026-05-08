@@ -16,59 +16,45 @@ const FooterLink: React.FC<FooterLinkProps> = ({ label, href }) => {
   const { contextSafe } = useGSAP({ scope: container });
 
   const onMouseEnter = contextSafe(() => {
-    const tl = gsap.timeline();
+    gsap.to(text1Ref.current, {
+      yPercent: -100,
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.inOut",
+      overwrite: true,
+    });
 
-    // Smooth vertical rolling animation
-    tl.to(
-      text1Ref.current,
-      {
-        yPercent: -100,
-        opacity: 0,
-        duration: 0.3,
-        ease: "power3.inOut",
-      },
-      0,
-    );
-
-    tl.fromTo(
+    gsap.fromTo(
       text2Ref.current,
-      { yPercent: 100, opacity: 0, color: "white" },
+      { yPercent: 100, opacity: 0 },
       {
         yPercent: 0,
         opacity: 1,
-        color: "#b2f6e3", // Rise at Seven Mint
+        color: "#b2f6e3",
         duration: 0.3,
-        ease: "power3.out",
+        ease: "power2.out",
+        overwrite: true,
+        delay: 0.05,
       },
-      0.1, // Slight overlap/stagger for "rolling" feel
     );
   });
 
   const onMouseLeave = contextSafe(() => {
-    const tl = gsap.timeline();
+    gsap.to(text1Ref.current, {
+      yPercent: 0,
+      opacity: 1,
+      duration: 0.3,
+      ease: "power2.inOut",
+      overwrite: true,
+    });
 
-    tl.to(
-      text1Ref.current,
-      {
-        yPercent: 0,
-        opacity: 1,
-        duration: 0.3,
-        ease: "power3.inOut",
-      },
-      0,
-    );
-
-    tl.to(
-      text2Ref.current,
-      {
-        yPercent: 100,
-        opacity: 0,
-        color: "white",
-        duration: 0.3,
-        ease: "power3.inOut",
-      },
-      0,
-    );
+    gsap.to(text2Ref.current, {
+      yPercent: 100,
+      opacity: 0,
+      duration: 0.3,
+      ease: "power2.inOut",
+      overwrite: true,
+    });
   });
 
   return (

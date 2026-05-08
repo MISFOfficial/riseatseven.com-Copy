@@ -99,6 +99,29 @@ function Navigation() {
       document.body.style.overflow = "auto";
     }
   }, [mobileMenu]);
+  
+  useEffect(() => {
+    const container = linksContainerRef.current;
+    if (!container) return;
+
+    const activeItem = navLinks.find((link) => link.href === pathname);
+    if (activeItem) {
+      const linkElement = container.querySelector(
+        `a[href="${activeItem.href}"]`,
+      ) as HTMLElement;
+      if (linkElement) {
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = linkElement.getBoundingClientRect();
+        setHoverStyles({
+          opacity: 1,
+          left: targetRect.left - containerRect.left,
+          width: targetRect.width,
+        });
+      }
+    } else {
+      setHoverStyles((prev) => ({ ...prev, opacity: 0 }));
+    }
+  }, [pathname]);
 
   const handleMouseEnter = (
     e: React.MouseEvent<HTMLAnchorElement>,
