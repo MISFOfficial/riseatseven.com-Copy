@@ -8,6 +8,7 @@ import MegaMenuLink from "./MegaMenuLink";
 import Logo from "./Logo";
 import Link from "next/link";
 import CommontButton from "./CommontButton";
+import { usePathname } from "next/navigation";
 
 function Navigation() {
   const [mobileMenu, setMobileMenu] = useState(false);
@@ -25,6 +26,8 @@ function Navigation() {
   const linksContainerRef = useRef<HTMLDivElement>(null);
 
   const prevScrollY = useRef(0);
+
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,6 +66,30 @@ function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Set active link position on mount and pathname change
+  useEffect(() => {
+    const container = linksContainerRef.current;
+    if (!container) return;
+
+    const activeItem = navLinks.find((link) => link.href === pathname);
+    if (activeItem) {
+      const linkElement = container.querySelector(
+        `a[href="${activeItem.href}"]`,
+      ) as HTMLElement;
+      if (linkElement) {
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = linkElement.getBoundingClientRect();
+        setHoverStyles({
+          opacity: 1,
+          left: targetRect.left - containerRect.left,
+          width: targetRect.width,
+        });
+      }
+    } else {
+      setHoverStyles((prev) => ({ ...prev, opacity: 0 }));
+    }
+  }, [pathname]);
+
   // Body scroll lock
   useEffect(() => {
     if (mobileMenu) {
@@ -100,6 +127,26 @@ function Navigation() {
   const handleMouseLeave = () => {
     // We don't clear megaMenu here immediately to allow moving mouse into the mega menu itself
     // But we clear hover styles for the pill if not over a mega menu link
+    const container = linksContainerRef.current;
+    if (!container) return;
+
+    const activeItem = navLinks.find((link) => link.href === pathname);
+    if (activeItem) {
+      const linkElement = container.querySelector(
+        `a[href="${activeItem.href}"]`,
+      ) as HTMLElement;
+      if (linkElement) {
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = linkElement.getBoundingClientRect();
+        setHoverStyles({
+          opacity: 1,
+          left: targetRect.left - containerRect.left,
+          width: targetRect.width,
+        });
+        return;
+      }
+    }
+    setHoverStyles((prev) => ({ ...prev, opacity: 0 }));
   };
 
   const clearInteractions = () => {
@@ -122,9 +169,27 @@ function Navigation() {
           {/* Desktop Links */}
           <div
             ref={linksContainerRef}
-            className="relative  hidden lg:inline-flex items-center "
+            className="relative hidden lg:inline-flex items-center py-1.5"
             onMouseLeave={handleMouseLeave}
           >
+            {/* Hover/Active Pill */}
+            <motion.div
+              className={`absolute top-0 bottom-0 rounded-full transition-colors duration-300 ${
+                isScrolled ? "bg-grey-100" : "bg-white/10"
+              }`}
+              initial={false}
+              animate={{
+                left: hoverStyles.left,
+                width: hoverStyles.width,
+                opacity: hoverStyles.opacity,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 30,
+              }}
+            />
+
             {navLinks.map((item) => (
               <div key={item.id} className="z-10 relative">
                 <a
@@ -189,52 +254,71 @@ function Navigation() {
       <AnimatePresence>
         {megaMenu && (
           <motion.div
+            layout
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              opacity: { duration: 0.2 },
+              layout: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
+            }}
             onMouseLeave={clearInteractions}
-            className="fixed top-30 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-40 bg-white rounded-[32px] shadow-2xl overflow-hidden p-8 lg:p-10"
+            className="fixed top-30 left-1/2 -translate-x-1/2 w-fit min-w-[500px] z-40 bg-white rounded-[32px] shadow-2xl overflow-hidden p-8 lg:p-10"
           >
-            {(() => {
-              const activeLink = navLinks.find((l) => l.id === megaMenu);
-              if (!activeLink) return null;
+            <AnimatePresence mode="wait">
+              {(() => {
+                const activeLink = navLinks.find((l) => l.id === megaMenu);
+                if (!activeLink) return null;
 
-              return (
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                  {/* Left Side: Links */}
-                  <div className="lg:col-span-7">
-                    <h3 className="text-xs font-bold text-grey-400 uppercase tracking-widest mb-8">
-                      Core {activeLink.label}
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
-                      {activeLink.items?.map((sub) => (
-                        <MegaMenuLink key={sub} label={sub} href="#" />
-                      ))}
+                return (
+                  <motion.div
+                    key={megaMenu}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex flex-col lg:flex-row gap-12"
+                  >
+                    {/* Left Side: Links */}
+                    <div className="flex-1 min-w-max">
+                      <h3 className="text-xs font-bold text-grey-400 uppercase tracking-widest mb-8">
+                        Core {activeLink.label}
+                      </h3>
+                      <div
+                        className={`grid gap-x-10 gap-y-4 ${
+                          activeLink.id === "services"
+                            ? "grid-cols-2"
+                            : "grid-cols-1"
+                        }`}
+                      >
+                        {activeLink.items?.map((sub) => (
+                          <MegaMenuLink key={sub} label={sub} href="#" />
+                        ))}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Right Side: Image Card */}
-                  <div className="lg:col-span-5 relative group cursor-pointer overflow-hidden rounded-2xl aspect-4/3">
-                    {activeLink.image && (
-                      <img
-                        src={activeLink.image}
-                        alt={activeLink.label}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                      />
-                    )}
-                    <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-40" />
-                    <div className="absolute bottom-6 left-6 right-6 flex justify-center">
-                      <CommontButton
-                        href="/#"
-                        label="Get in touch"
-                        variant="white"
-                      />
+                    {/* Right Side: Image Card */}
+                    <div className="w-[300px] lg:w-[380px] shrink-0 relative group cursor-pointer overflow-hidden rounded-2xl aspect-[4/3]">
+                      {activeLink.image && (
+                        <img
+                          src={activeLink.image}
+                          alt={activeLink.label}
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                        />
+                      )}
+                      <div className="absolute inset-0 bg-black/20 transition-opacity group-hover:opacity-40" />
+                      <div className="absolute bottom-6 left-6 right-6 flex justify-center">
+                        <CommontButton
+                          href="/#"
+                          label="Get in touch"
+                          variant="white"
+                        />
+                      </div>
                     </div>
-                  </div>
-                </div>
-              );
-            })()}
+                  </motion.div>
+                );
+              })()}
+            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>
