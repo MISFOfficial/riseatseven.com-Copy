@@ -17,6 +17,7 @@ function Navigation() {
   const [isVisible, setIsVisible] = useState(true);
   const [hideAnnouncementBar, setHideAnnouncementBar] = useState(false);
   const [isInFeatureWork, setIsInFeatureWork] = useState(false);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
 
   const [hoverStyles, setHoverStyles] = useState({
     opacity: 0,
@@ -105,6 +106,7 @@ function Navigation() {
   ) => {
     const target = e.currentTarget;
     const container = linksContainerRef.current;
+    setHoveredId(id);
 
     // Set mega menu
     if (["services", "international", "about"].includes(id.toLowerCase())) {
@@ -127,6 +129,7 @@ function Navigation() {
   const handleMouseLeave = () => {
     // We don't clear megaMenu here immediately to allow moving mouse into the mega menu itself
     // But we clear hover styles for the pill if not over a mega menu link
+    setHoveredId(null);
     const container = linksContainerRef.current;
     if (!container) return;
 
@@ -174,9 +177,7 @@ function Navigation() {
           >
             {/* Hover/Active Pill */}
             <motion.div
-              className={`absolute top-0 bottom-0 rounded-full transition-colors duration-300 ${
-                isScrolled ? "bg-grey-100" : "bg-white/10"
-              }`}
+              className={`absolute top-0 bottom-0 rounded-full bg-white shadow-sm transition-colors duration-300`}
               initial={false}
               animate={{
                 left: hoverStyles.left,
@@ -190,31 +191,39 @@ function Navigation() {
               }}
             />
 
-            {navLinks.map((item) => (
-              <div key={item.id} className="z-10 relative">
-                <a
-                  href={item.href}
-                  onMouseEnter={(e) => handleMouseEnter(e, item.id)}
-                  className={`group inline-flex tracking-tight leading-tight  font-semibold relative duration-300 px-4 transition-colors ${
-                    isScrolled
-                      ? "text-grey-900 hover:text-black"
-                      : "text-white hover:text-grey-300"
-                  }`}
-                >
-                  {item.label}
-                  {item.hasPlus && (
-                    <span className="hidden ml-1 pointer-events-none lg:inline">
-                      +
-                    </span>
-                  )}
-                  {item.badge && (
-                    <div className="inline-flex pointer-events-none absolute top-0 right-0 -translate-y-2.5 rounded-full px-1.5 py-0.5 text-[10px] font-thin transition group-hover:-translate-y-4 bg-mint text-grey-900">
-                      {item.badge}
-                    </div>
-                  )}
-                </a>
-              </div>
-            ))}
+            {navLinks.map((item) => {
+              const isActive = pathname === item.href;
+              const isPillUnder =
+                hoveredId === item.id || (!hoveredId && isActive);
+
+              return (
+                <div key={item.id} className="z-10 relative">
+                  <a
+                    href={item.href}
+                    onMouseEnter={(e) => handleMouseEnter(e, item.id)}
+                    className={`group inline-flex tracking-tight leading-tight font-semibold relative duration-300 px-4 transition-colors ${
+                      isPillUnder
+                        ? "text-grey-900"
+                        : isScrolled
+                          ? "text-grey-900 hover:text-black"
+                          : "text-white hover:text-grey-300"
+                    }`}
+                  >
+                    {item.label}
+                    {item.hasPlus && (
+                      <span className="hidden ml-1 pointer-events-none lg:inline">
+                        +
+                      </span>
+                    )}
+                    {item.badge && (
+                      <div className="inline-flex pointer-events-none absolute top-0 right-0 -translate-y-2.5 rounded-full px-1.5 py-0.5 text-[10px] font-thin transition group-hover:-translate-y-4 bg-mint text-grey-900">
+                        {item.badge}
+                      </div>
+                    )}
+                  </a>
+                </div>
+              );
+            })}
           </div>
 
           {/* CTA Button */}
@@ -264,7 +273,7 @@ function Navigation() {
               layout: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
             }}
             onMouseLeave={clearInteractions}
-            className="fixed top-30 left-1/2 -translate-x-1/2 w-fit min-w-[500px] z-40 bg-white rounded-[32px] shadow-2xl overflow-hidden p-8 lg:p-10"
+            className={`fixed ${isScrolled ? "top-[85px]" : "top-30"}  left-1/2 -translate-x-1/2 w-fit min-w-[500px] z-40 bg-white rounded-[32px] shadow-2xl overflow-hidden p-8 lg:p-10`}
           >
             <AnimatePresence mode="popLayout" initial={false}>
               {(() => {
