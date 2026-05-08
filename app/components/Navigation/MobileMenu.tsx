@@ -61,7 +61,7 @@ function MobileMenu({ isOpen, onClose }: MobileMenuProps) {
               </div>
 
               {/* Links */}
-              <div className="flex flex-col items-start gap-y-1 border ">
+              <div className="flex flex-col items-start gap-y-1  ">
                 {navLinks.map((menu) => (
                   <div key={menu.id} className="w-full">
                     <div className="flex items-center justify-between">
