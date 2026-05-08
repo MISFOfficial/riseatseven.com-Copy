@@ -240,12 +240,40 @@ function Navigation() {
       </AnimatePresence>
 
       {/* Interaction Overlay */}
-      {megaMenu && (
-        <div
-          className="fixed inset-0 z-30 pointer-events-auto"
-          onMouseEnter={clearInteractions}
-        />
-      )}
+      <AnimatePresence>
+        {megaMenu && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0 }}
+            className="fixed inset-0 z-30 pointer-events-auto overflow-hidden"
+            onMouseEnter={clearInteractions}
+          >
+            {(() => {
+              const activeLink = navLinks.find((l) => l.id === megaMenu);
+              if (!activeLink?.image) return null;
+              return (
+                <motion.div
+                  key={activeLink.image}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0 }}
+                  className="absolute inset-0"
+                >
+                  <img
+                    src={activeLink.image}
+                    alt=""
+                    className="w-full h-full object-cover blur-[80px] opacity-40 brightness-50"
+                  />
+                </motion.div>
+              );
+            })()}
+            <div className="absolute inset-0 bg-black/10 backdrop-blur-[15px]" />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Mobile Menu Overlay */}
       <MobileMenu isOpen={mobileMenu} onClose={() => setMobileMenu(false)} />
