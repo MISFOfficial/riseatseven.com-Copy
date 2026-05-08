@@ -4,12 +4,12 @@ export const footerContent = {
     placeholder: "Your Email Address",
   },
   socials: [
-    { name: "Facebook", href: "#", icon: "f" },
-    { name: "Twitter", href: "#", icon: "x" },
-    { name: "LinkedIn", href: "#", icon: "in" },
-    { name: "YouTube", href: "#", icon: "yt" },
-    { name: "TikTok", href: "#", icon: "tt" },
-    { name: "Instagram", href: "#", icon: "Ins" },
+    { name: "Facebook", href: "#", icon: "FaFacebookF" },
+    { name: "Twitter", href: "#", icon: "BsTwitterX" },
+    { name: "LinkedIn", href: "#", icon: "FaLinkedinIn" },
+    { name: "YouTube", href: "#", icon: "FaYoutube" },
+    { name: "TikTok", href: "#", icon: "FaTiktok" },
+    { name: "Instagram", href: "#", icon: "FaInstagram" },
   ],
   columns: [
     {
