@@ -60,7 +60,7 @@ function InsightsMobile({
                 });
               }}
             >
-              <div className="relative aspect-square rounded-4xl lg:rounded-[3rem] overflow-hidden bg-white border border-red-700">
+              <div className="relative aspect-square rounded-4xl lg:rounded-[3rem] overflow-hidden bg-white">
                 <Image
                   src={item.image}
                   alt={item.title}
